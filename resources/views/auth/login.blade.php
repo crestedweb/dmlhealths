@@ -1,0 +1,2 @@
+@extends('layouts.app')
+@section('content')<section class="form-section"><form method="post" action="{{ route('login.store') }}">@csrf<h1>Administrator sign in</h1><label>Email<input type="email" name="email" value="{{ old('email') }}" required autofocus></label><label>Password<input type="password" name="password" required></label><label><input type="checkbox" name="remember"> Keep me signed in</label>@error('email')<p class="error">{{ $message }}</p>@enderror<button class="button">Sign in</button></form></section>@endsection

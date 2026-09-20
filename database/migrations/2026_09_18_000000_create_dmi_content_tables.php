@@ -1,0 +1,25 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    public function up(): void {
+        Schema::table('users', fn (Blueprint $table) => $table->boolean('is_admin')->default(false)->index());
+        Schema::create('services', function (Blueprint $table) { $table->id(); $table->string('slug')->unique(); $table->string('title'); $table->text('summary'); $table->longText('content')->nullable(); $table->string('image_path')->nullable(); $table->boolean('published')->default(false)->index(); $table->timestamps(); });
+        Schema::create('blog_categories', function (Blueprint $table) { $table->id(); $table->string('name')->unique(); $table->string('slug')->unique(); $table->timestamps(); });
+        Schema::create('blog_posts', function (Blueprint $table) { $table->id(); $table->foreignId('author_id')->nullable()->constrained('users')->nullOnDelete(); $table->foreignId('blog_category_id')->nullable()->constrained()->nullOnDelete(); $table->string('slug')->unique(); $table->string('title'); $table->text('excerpt')->nullable(); $table->longText('content')->nullable(); $table->string('featured_image_path')->nullable(); $table->string('seo_title')->nullable(); $table->string('seo_description', 160)->nullable(); $table->boolean('published')->default(false)->index(); $table->timestamp('published_at')->nullable()->index(); $table->timestamps(); });
+        Schema::create('gallery_categories', function (Blueprint $table) { $table->id(); $table->string('name')->unique(); $table->string('slug')->unique(); $table->timestamps(); });
+        Schema::create('gallery_images', function (Blueprint $table) { $table->id(); $table->foreignId('gallery_category_id')->nullable()->constrained()->nullOnDelete(); $table->string('path'); $table->string('alt_text'); $table->string('caption')->nullable(); $table->boolean('published')->default(false)->index(); $table->timestamps(); });
+        Schema::create('faqs', function (Blueprint $table) { $table->id(); $table->string('question'); $table->text('answer'); $table->unsignedSmallInteger('sort_order')->default(0); $table->boolean('published')->default(false)->index(); $table->timestamps(); });
+        Schema::create('team_members', function (Blueprint $table) { $table->id(); $table->string('name'); $table->string('position'); $table->text('bio')->nullable(); $table->string('credentials')->nullable(); $table->string('photo_path')->nullable(); $table->unsignedSmallInteger('sort_order')->default(0); $table->boolean('published')->default(false)->index(); $table->timestamps(); });
+        Schema::create('contact_messages', function (Blueprint $table) { $table->id(); $table->string('name'); $table->string('email')->index(); $table->string('phone', 40)->nullable(); $table->string('subject'); $table->string('reason'); $table->text('message'); $table->timestamp('read_at')->nullable(); $table->timestamps(); });
+        Schema::create('information_requests', function (Blueprint $table) { $table->id(); $table->string('name'); $table->string('email')->index(); $table->string('phone', 40)->nullable(); $table->string('preferred_contact_method', 20); $table->string('support_area'); $table->text('message')->nullable(); $table->timestamp('read_at')->nullable(); $table->timestamps(); });
+        Schema::create('newsletter_subscribers', function (Blueprint $table) { $table->id(); $table->string('email')->unique(); $table->timestamp('consented_at'); $table->timestamp('unsubscribed_at')->nullable(); $table->timestamps(); });
+        Schema::create('social_links', function (Blueprint $table) { $table->id(); $table->string('platform')->unique(); $table->string('url')->nullable(); $table->timestamps(); });
+        Schema::create('site_settings', function (Blueprint $table) { $table->id(); $table->string('key')->unique(); $table->text('value')->nullable(); $table->timestamps(); });
+        Schema::create('donations', function (Blueprint $table) { $table->id(); $table->string('provider')->nullable(); $table->string('provider_reference')->nullable()->unique(); $table->unsignedInteger('amount_cents'); $table->string('currency', 3)->default('USD'); $table->string('status')->default('pending')->index(); $table->string('donor_email')->nullable(); $table->timestamps(); });
+    }
+    public function down(): void { Schema::dropIfExists('donations'); Schema::dropIfExists('site_settings'); Schema::dropIfExists('social_links'); Schema::dropIfExists('newsletter_subscribers'); Schema::dropIfExists('information_requests'); Schema::dropIfExists('contact_messages'); Schema::dropIfExists('team_members'); Schema::dropIfExists('faqs'); Schema::dropIfExists('gallery_images'); Schema::dropIfExists('gallery_categories'); Schema::dropIfExists('blog_posts'); Schema::dropIfExists('blog_categories'); Schema::dropIfExists('services'); Schema::table('users', fn (Blueprint $table) => $table->dropColumn('is_admin')); }
+};

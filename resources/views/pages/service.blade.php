@@ -1,0 +1,2 @@
+@extends('layouts.app')
+@section('content')<section class="page-hero"><p class="eyebrow">Our services</p><h1>{{ $service[0] }}</h1><p class="lead">{{ $service[1] }}</p></section><section class="page-content"><h2>How we can help</h2><ul class="checklist">@foreach($service[2] as $item)<li>{{ $item }}</li>@endforeach</ul><p>DMI Healths will tailor support in partnership with the individual, their family and appropriate professionals.</p><a class="button" href="{{ route('request-information') }}">Request Information</a></section>@endsection

@@ -1,0 +1,5 @@
+@extends('layouts.app')
+@section('content')
+<section class="eligibility-hero"><div><p class="eyebrow">{{ $content['eyebrow'] }}</p><h1>{{ $content['title'] }}</h1><p>{{ $content['intro'] }}</p><a class="eligibility-button" href="{{ route('request-information') }}">Request Information</a></div><img src="{{ $content['image'] }}" alt="Supportive adults in a community setting" loading="eager"></section>
+<section class="eligibility-content"><p class="disclaimer">The information below is for general education only. It does not replace an assessment, diagnosis or guidance from a qualified professional.</p>@foreach($content['sections'] as [$heading, $body])<article><h2>{{ $heading }}</h2><p>{{ $body }}</p></article>@endforeach<p class="source-note">{{ $content['source'] }}</p><div class="eligibility-contact"><h2>Have questions about support?</h2><p>We welcome a conversation about DMI Healths services and your information needs.</p><a class="eligibility-button" href="{{ route('contact') }}">Contact Us</a></div></section>
+@endsection
