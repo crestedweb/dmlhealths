@@ -1,0 +1,180 @@
+@extends('layouts.app')
+
+@section('content')
+<style>
+  body:has(.heart-cpr-page) { background:#fff; }
+  body:has(.heart-cpr-page) > header, body:has(.heart-cpr-page) > .site-footer { display:none!important; }
+  body:has(.heart-cpr-page) #main { width:100%; max-width:none; margin:0; background:#fff; }
+  .heart-cpr-page { font-family:Arial,Helvetica,sans-serif; color:#171717; background:#fff; }
+  .hc-top {height:54px;border-bottom:1px solid #0b4f91;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:#fff}
+  .hc-logo {display:flex;align-items:center;gap:5px;color:#111;font-weight:800;font-size:13px;line-height:1;text-decoration:none}
+  .hc-logo-mark {width:48px;height:48px;object-fit:contain;border-radius:6px}.hc-logo span b{color:#1c8577}
+  .hc-actions{display:flex;gap:9px}.hc-actions a{background:#05265f;color:#fff;text-decoration:none;border-radius:3px;padding:9px 24px;font-size:13px;font-weight:bold}.hc-actions a:last-child{background:#0052a4}
+  .hc-nav{height:32px;border-bottom:1px solid #0b4f91;display:flex;align-items:center;justify-content:center;gap:38px;background:#fff}.hc-nav a{font-size:13px;font-weight:bold;color:#222;text-decoration:none}
+  .hc-hero{height:290px;position:relative;background:linear-gradient(0deg,rgba(0,0,0,.05),rgba(0,0,0,.15)),url('{{ asset('images/hero5.jpg') }}') center 42%/cover;display:flex;justify-content:center;align-items:flex-start;color:white;text-align:center}
+  .hc-hero h1{font-size:clamp(30px,3vw,44px);line-height:1.08;margin:15px 12px 0;text-shadow:0 1px 4px #555}.hc-hero h1 small{display:block;font-size:.58em;margin-top:2px}
+  .hc-finder{position:absolute;right:21%;top:82px;width:215px;padding:13px 12px 12px;background:rgba(255,255,255,.96);border-radius:8px;color:#222;text-align:left;box-shadow:0 2px 12px #5556}
+  .hc-finder h2{font-size:16px;text-align:center;margin:0 0 3px}.hc-finder p{font-size:10px;text-align:center;margin:0 0 8px;color:#555}.hc-finder label{display:block;font-size:10px;font-weight:bold;margin:6px 0}.hc-finder select{display:block;width:100%;height:21px;border:1px solid #ccc;border-radius:4px;background:white;font-size:11px;margin-top:3px;padding:2px 5px}.hc-finder button{width:100%;height:22px;margin-top:4px;background:#0052a4;border:0;border-radius:5px;color:#fff;font-size:11px;font-weight:bold}
+  .hc-cert{height:132px;background:#0b376d;color:#fff;display:flex;align-items:center;justify-content:center;gap:52px}.hc-cert-logo{text-align:center;font-weight:bold;font-size:17px;line-height:1}.hc-cert-logo img{width:76px;height:76px;object-fit:contain;border-radius:50%}.hc-cert-logo svg{width:73px;height:73px;display:block;margin:0 auto 3px}.hc-cert-logo small{display:block;font-size:8px;margin-top:4px}.hc-seal{width:76px;height:76px;object-fit:contain;border-radius:50%}.hc-redcross-logo{width:58px;height:58px;object-fit:contain}
+  .hc-courses{padding:19px 9px 28px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.hc-card{overflow:hidden;border-radius:0 0 18px 18px;background:#164f88;color:#fff;text-align:center;min-width:0}.hc-card:nth-child(2){background:#347eb3}.hc-card:nth-child(3){background:#0b376d}.hc-card img{width:100%;height:148px;object-fit:cover;display:block}.hc-card h2{font-size:18px;margin:10px 7px 6px}.hc-card p{font-size:13px;line-height:1.45;min-height:27px;margin:0 12px 8px}.hc-card a{display:inline-block;background:white;color:#123761;padding:5px 17px;margin:0 0 10px;border-radius:2px;font-size:11px;font-weight:bold;text-decoration:none}
+  .hc-redcross{height:116px;display:flex;justify-content:center;align-items:center;gap:16px;color:#777}.hc-cross{width:48px;height:48px;border-radius:50%;background:#f7f7f7;box-shadow:0 2px 6px #999;position:relative}.hc-cross:before,.hc-cross:after{content:'';position:absolute;background:#e30017;left:20px;top:6px;width:9px;height:36px}.hc-cross:after{transform:rotate(90deg)}.hc-redcross strong{font-size:21px}.hc-redcross small{display:block;text-align:right;font-size:10px;color:#777}
+  .hc-bottom{height:10px;background:#14324a}
+  .hc-enquiry{padding:45px 7%;background:#f6f6f6}.hc-enquiry h2{text-align:center;color:#173347}.hc-enquiry form{max-width:700px;margin:20px auto;display:grid;grid-template-columns:1fr 1fr;gap:12px}.hc-enquiry label{display:grid;gap:5px;font-size:13px}.hc-enquiry input,.hc-enquiry select,.hc-enquiry textarea{padding:10px;border:1px solid #ccc;border-radius:4px}.hc-enquiry .wide{grid-column:1/-1}.hc-enquiry button{grid-column:1/-1;background:#0052a4;color:#fff;border:0;padding:12px;border-radius:4px;font-weight:bold}
+  @media(max-width:700px){.hc-top{height:48px;padding:0 12px}.hc-actions a{padding:7px 9px;font-size:8px}.hc-nav{gap:0;justify-content:space-around;height:30px}.hc-nav a{font-size:10px}.hc-hero{height:300px;background-position:center}.hc-hero h1{font-size:26px}.hc-finder{right:50%;transform:translateX(50%);top:105px;width:min(280px,88%)}.hc-cert{height:112px;gap:25px}.hc-cert-logo{font-size:14px}.hc-cert-logo svg{width:61px;height:61px}.hc-cert-logo img{width:65px;height:65px}.hc-seal{width:65px;height:65px}.hc-redcross-logo{width:48px;height:48px}.hc-courses{grid-template-columns:1fr;gap:14px;padding:16px 10px 25px}.hc-card img{height:190px}.hc-card h2{font-size:17px}.hc-card p{font-size:13px;min-height:0}.hc-card a{font-size:11px}.hc-redcross{height:95px}.hc-redcross strong{font-size:17px}.hc-cross{width:40px;height:40px}.hc-cross:before,.hc-cross:after{left:16px;top:5px;height:30px}.hc-enquiry form{grid-template-columns:1fr}.hc-enquiry .wide{grid-column:auto}}
+.heart-cpr-page section{padding:0}.heart-cpr-page .hc-courses{padding:19px 9px 28px}.heart-cpr-page .hc-enquiry{padding:45px 7%}@media(max-width:700px){.heart-cpr-page .hc-courses{padding:16px 10px 25px}.heart-cpr-page .hc-enquiry{padding:40px 7%}}
+  .hc-hero{min-height:400px;height:auto;position:relative;isolation:isolate;display:flex;align-items:center;justify-content:stretch;text-align:left;background:url('{{ asset('images/hero5.jpg') }}') center 42%/cover;color:#fff}
+  .hc-hero::after{content:"";position:absolute;z-index:0;inset:0;background:linear-gradient(0deg,rgba(6,38,77,.96) 0%,rgba(6,38,77,.82) 34%,rgba(6,38,77,.28) 62%,rgba(6,38,77,.04) 100%);pointer-events:none}
+  .hc-hero-inner{position:relative;z-index:1;width:min(100%,1560px);margin:0 auto;padding:38px 4.2%;display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:5%;align-items:center}
+  .hc-hero-copy{max-width:790px}.hc-eyebrow{font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin-bottom:22px}.hc-eyebrow span{padding:0 8px;color:#7fc5ff}.hc-hero-copy h1{font-size:clamp(42px,5vw,70px);line-height:1.03;letter-spacing:-.035em;margin:0 0 20px;text-shadow:0 2px 12px rgba(0,25,55,.65)}.hc-hero-copy h1 span{display:block;color:#58c5c2}.hc-hero-desc{max-width:570px;font-size:19px;line-height:1.65;margin:0 0 25px;color:rgba(255,255,255,.96);text-shadow:0 1px 9px rgba(0,25,55,.75)}
+  .hc-hero-links{display:flex;gap:14px;flex-wrap:wrap}.hc-hero-links a{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 25px;border-radius:12px;color:#fff;text-decoration:none;font-size:15px;font-weight:700}.hc-primary-link{background:#0052a4;box-shadow:0 4px 18px rgba(0,20,45,.24)}.hc-secondary-link{border:2px solid #fff;background:rgba(4,35,70,.25)}
+  .hc-finder{position:relative;right:auto;top:auto;width:100%;padding:28px;background:rgba(255,255,255,.98);border-radius:14px;color:#15385f;text-align:left;box-shadow:0 12px 35px rgba(0,0,0,.2)}.hc-finder h2{font-size:25px;text-align:left;margin:0 0 6px;color:#123761}.hc-finder p{font-size:14px;text-align:left;line-height:1.5;margin:0 0 18px;color:#58708c}.hc-finder label{display:block;font-size:14px;font-weight:700;margin:13px 0;color:#27496f}.hc-finder select{height:48px;border:1px solid #d9e1ec;border-radius:8px;font-size:14px;margin-top:7px;padding:0 12px;color:#47627f}.hc-finder button{height:52px;margin-top:9px;background:#0052a4;border:0;border-radius:9px;color:#fff;font-size:16px;font-weight:700}
+  .hc-trust-strip{min-height:136px;background:#f2f7fd;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;padding:22px max(5%,calc((100% - 1500px)/2));color:#123761}.hc-trust-item{display:flex;align-items:center;gap:18px;padding:5px 25px;border-right:1px solid #d4e2f2}.hc-trust-item:last-child{border-right:0}.hc-trust-icon{width:62px;height:62px;flex:0 0 62px;display:grid;place-items:center;border-radius:50%;background:#e0efff;color:#103f73;font-size:28px;font-weight:bold}.hc-trust-item strong,.hc-trust-item small{display:block}.hc-trust-item strong{font-size:17px;margin-bottom:5px}.hc-trust-item small{font-size:13px;line-height:1.4;color:#617c9c}
+  @media(max-width:800px){.hc-hero{height:auto;min-height:0;background:url('{{ asset('images/hero5.jpg') }}') center/cover}.hc-hero-inner{grid-template-columns:1fr;gap:28px;padding:48px 22px}.hc-hero-copy h1{font-size:clamp(36px,8vw,54px)}.hc-hero-desc{font-size:16px}.hc-finder{max-width:480px}.hc-trust-strip{grid-template-columns:1fr;padding:12px 20px}.hc-trust-item{border-right:0;border-bottom:1px solid #d4e2f2;padding:16px 4px}.hc-trust-item:last-child{border-bottom:0}}
+  .hc-testimonials{padding:36px max(5%,calc((100% - 1440px)/2));background:#edf2f7;color:#123761}.hc-testimonials-heading{text-align:center;margin:0 0 5px;font-size:24px;color:#123761}.hc-testimonials-note{text-align:center;margin:0 0 22px;font-size:12px;color:#617c9c}.hc-testimonial-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.hc-testimonial-card{display:flex;flex-direction:column;align-items:center;text-align:center;padding:22px 20px 18px;background:#fff;border:1px solid #e3eaf2;border-radius:12px;box-shadow:0 5px 18px rgba(16,48,78,.1)}.hc-testimonial-card img{width:58px;height:58px;border-radius:50%;object-fit:cover;margin-bottom:12px}.hc-testimonial-card blockquote{margin:0 0 12px;color:#273b52;font-size:15px;line-height:1.5}.hc-testimonial-stars{color:#0875bd;letter-spacing:3px;font-size:17px;margin-bottom:5px}.hc-testimonial-role{font-size:12px;font-weight:700;color:#526a82}
+  .hc-footer{padding:30px max(5%,calc((100% - 1440px)/2)) 16px;background:#41474d;color:#e8edf1}.hc-footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.1fr;gap:30px}.hc-footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:10px;color:#fff;font-weight:800}.hc-footer-brand img{width:44px;height:44px;object-fit:contain;border-radius:6px}.hc-footer-brand span b{color:#58c5c2}.hc-footer-tagline{font-size:12px;color:#c5cdd4;line-height:1.5;max-width:220px}.hc-footer h3{margin:4px 0 11px;color:#fff;font-size:13px;letter-spacing:.06em;text-transform:uppercase}.hc-footer p,.hc-footer a{font-size:13px;line-height:1.7;color:#d5dce2}.hc-footer a{display:block;text-decoration:none}.hc-footer a:hover{color:#58c5c2}.hc-footer-bottom{margin-top:22px;padding-top:13px;border-top:1px solid rgba(255,255,255,.2);font-size:11px;color:#bfc8d0}
+  @media(max-width:800px){.hc-testimonials{padding:28px 16px}.hc-testimonials-heading{font-size:21px}.hc-testimonial-grid{display:flex;gap:12px;overflow-x:auto;padding:2px 2px 14px;scroll-snap-type:x mandatory}.hc-testimonial-card{flex:0 0 min(78vw,280px);scroll-snap-align:start;padding:18px 16px}.hc-footer{padding:26px 18px 14px}.hc-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 18px}.hc-footer-brand-block{grid-column:1/-1}.hc-footer-tagline{max-width:320px}}
+  .hc-class-modal{position:fixed!important;inset:0!important;margin:auto!important;width:min(820px,calc(100vw - 40px))!important;max-width:820px!important;height:fit-content;max-height:calc(100vh - 40px);box-sizing:border-box;padding:0;border:0;border-radius:18px;background:#fff;color:#15191e;box-shadow:0 24px 80px rgba(0,0,0,.35);overflow:auto}.hc-class-modal::backdrop{background:rgba(0,0,0,.78);backdrop-filter:blur(2px)}.hc-class-modal-inner{position:relative;padding:32px 6% 30px}.hc-class-modal-close{position:absolute;top:7px;right:10px;width:34px;height:34px;border:0;background:transparent;color:#252a31;font-size:26px;line-height:1;cursor:pointer}.hc-class-modal h2{text-align:center;margin:0 0 6px;color:#15191e;font-size:clamp(26px,2.8vw,34px);font-weight:600}.hc-class-modal-intro{text-align:center;margin:0;color:#59616a;font-size:15px}.hc-class-modal-fields{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:22px auto 0;max-width:680px}.hc-class-modal label{display:block;color:#20252b;font-size:14px;font-weight:700}.hc-class-modal-location-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.hc-use-location{border:0;background:transparent;color:#0052a4;font-size:12px;font-weight:700;cursor:pointer}.hc-class-modal select{display:block;width:100%;height:54px;margin-top:7px;padding:0 14px;border:1px solid #d4d8dd;border-radius:10px;background:#fff;color:#272c32;font-size:15px}.hc-class-modal-submit{display:block;width:min(100%,300px);height:56px;margin:20px auto 0;border:0;border-radius:12px;background:#0052a4;color:#fff;font-size:17px;font-weight:700;cursor:pointer;box-shadow:0 8px 24px rgba(0,82,164,.2)}.hc-class-modal-status{min-height:16px;margin:8px 0 0;text-align:center;color:#52677d;font-size:12px}
+  @media(max-width:700px){.hc-class-modal{width:calc(100vw - 24px)!important;max-width:calc(100vw - 24px)!important;max-height:calc(100vh - 24px);border-radius:18px}.hc-class-modal-inner{padding:48px 18px 24px}.hc-class-modal h2{font-size:27px}.hc-class-modal-intro{font-size:14px;line-height:1.5}.hc-class-modal-fields{grid-template-columns:1fr;gap:16px;margin-top:22px}.hc-class-modal select{height:56px;font-size:15px}.hc-class-modal-submit{height:56px;margin-top:20px;font-size:17px}.hc-class-modal-close{top:6px;right:8px}}
+  .hc-faq{padding:42px max(5%,calc((100% - 1100px)/2));background:#f5f8fc;color:#123761}.hc-faq h2{text-align:center;margin:0 0 24px;color:#123761;font-size:26px}.hc-faq-list{display:grid;grid-template-columns:1fr 1fr;gap:12px}.hc-faq details{padding:17px 19px;border:1px solid #dce5ef;border-radius:10px;background:#fff}.hc-faq summary{position:relative;padding-right:24px;color:#173b62;font-size:15px;font-weight:700;cursor:pointer;list-style:none}.hc-faq summary::-webkit-details-marker{display:none}.hc-faq summary::after{content:'+';position:absolute;right:0;top:-2px;color:#0052a4;font-size:21px;line-height:1}.hc-faq details[open] summary::after{content:'−'}.hc-faq details p{margin:11px 0 0;color:#536779;font-size:14px;line-height:1.6}
+  @media(max-width:700px){.hc-faq{padding:32px 16px}.hc-faq h2{font-size:22px;margin-bottom:18px}.hc-faq-list{grid-template-columns:1fr}.hc-faq details{padding:15px 16px}}
+  .hc-learn{padding:48px max(5%,calc((100% - 1440px)/2))!important;background:#fff;color:#123761}.hc-learn-heading{text-align:center;margin:0 0 8px;font-size:28px;color:#123761}.hc-learn-intro{text-align:center;max-width:680px;margin:0 auto 24px;color:#617c9c;font-size:15px;line-height:1.6}.hc-learn-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.hc-learn-card{overflow:hidden;border:1px solid #e0e8f0;border-radius:14px;background:#fff;box-shadow:0 6px 20px rgba(16,48,78,.1)}.hc-learn-card img{display:block;width:100%;height:190px;object-fit:cover}.hc-learn-card-body{padding:18px 20px 20px}.hc-learn-card h3{margin:0 0 8px;color:#123761;font-size:18px}.hc-learn-card p{margin:0;color:#536779;font-size:14px;line-height:1.6}@media(max-width:800px){.hc-learn{padding:34px 16px!important}.hc-learn-heading{font-size:23px}.hc-learn-intro{font-size:14px;margin-bottom:18px}.hc-learn-grid{grid-template-columns:1fr;gap:14px}.hc-learn-card{display:grid;grid-template-columns:minmax(105px,34%) 1fr;align-items:stretch}.hc-learn-card img{height:100%;min-height:145px}.hc-learn-card-body{padding:15px 14px}.hc-learn-card h3{font-size:16px}.hc-learn-card p{font-size:13px}}
+</style>
+<div class="heart-cpr-page">
+  <header class="hc-top">
+    <a class="hc-logo" href="{{ route('home') }}" aria-label="DMI Healths home">
+      <img class="hc-logo-mark" src="{{ asset('images/dmi-logo-transparent.png') }}" alt="">
+      <span>DMI <b>HEALTHS</b></span>
+    </a>
+    <div class="hc-actions"><a href="tel:8009151213">☎ 800-915-1213</a><a href="#class-finder">⌕ Find a Class</a></div>
+  </header>
+  <nav class="hc-nav" aria-label="CPR training navigation"><a href="#courses">CLASSES⌄</a><a href="#courses">ONLINE CLASSES</a><a href="#class-finder">LOCATIONS</a><a href="#courses">GROUP TRAINING</a><a href="#training-enquiry">HELP⌄</a></nav>
+  <dialog class="hc-class-modal" id="hc-class-modal" aria-labelledby="hc-class-modal-title">
+    <div class="hc-class-modal-inner">
+      <button class="hc-class-modal-close" type="button" aria-label="Close class search">×</button>
+      <h2 id="hc-class-modal-title">Find a Class Near You</h2>
+      <p class="hc-class-modal-intro">Select a course and location to view available classes near you.</p>
+      <form id="hc-class-modal-form">
+        <div class="hc-class-modal-fields">
+          <label>Course<select name="course" required><option value="">Select a course</option><option value="CPR/AED">CPR/AED &amp; First Aid</option><option value="First Aid + CPR">First Aid + CPR</option><option value="BLS Provider">BLS Provider</option><option value="Workplace Group Training">Workplace Group Training</option></select></label>
+          <label><span class="hc-class-modal-location-head"><span>Location</span><button class="hc-use-location" type="button">Use My Location</button></span><select name="location" required><option value="">Select location</option><option value="Los Angeles">Los Angeles, California</option></select></label>
+        </div>
+        <p class="hc-class-modal-status" aria-live="polite"></p>
+        <button class="hc-class-modal-submit" type="submit">Find Class</button>
+      </form>
+    </div>
+  </dialog>
+  <section class="hc-hero">
+    <div class="hc-hero-inner">
+      <div class="hc-hero-copy">
+        <p class="hc-eyebrow">Life-saving skills <span>•</span> Real-world training</p>
+        <h1>CPR &amp; First Aid Training <span>You Can Trust</span></h1>
+        <p class="hc-hero-desc">Get certified with confidence. Our experienced instructors provide hands-on, practical training that prepares you to respond when it matters most.</p>
+        <div class="hc-hero-links"><a class="hc-primary-link" href="#class-finder">▦ &nbsp; Find a Class &nbsp; ›</a><a class="hc-secondary-link" href="#courses">▶ &nbsp; View Training Options</a></div>
+      </div>
+      <form class="hc-finder" id="class-finder" action="#training-enquiry"><h2>Find a Class Near You</h2><p>Search for available courses in your area and get started today.</p><label>Course<select name="course"><option value="CPR/AED">Select a course</option><option value="First Aid + CPR">First Aid / CPR / AED</option><option value="BLS Provider">BLS Provider &amp; Renewal</option><option value="Workplace Group Training">Group Training</option></select></label><label>Location<select name="location"><option>Select a location</option><option>Los Angeles</option></select></label><button type="submit">⌕ &nbsp; Find Class</button></form>
+    </div>
+  </section>
+  <section class="hc-testimonials" aria-labelledby="hc-testimonials-title">
+    <h2 class="hc-testimonials-heading" id="hc-testimonials-title">Hear From Our Certified Pros</h2>
+    <p class="hc-testimonials-note">Sample quotes shown—replace with verified participant feedback.</p>
+    <div class="hc-testimonial-grid">
+      <article class="hc-testimonial-card"><img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=180&q=85" alt="Healthcare professional" loading="lazy"><blockquote>“The hands-on practice made the skills easy to remember.”</blockquote><div class="hc-testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div><span class="hc-testimonial-role">CPR &amp; First Aid Participant</span></article>
+      <article class="hc-testimonial-card"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=180&q=85" alt="Healthcare professional" loading="lazy"><blockquote>“I feel more confident about responding in an emergency.”</blockquote><div class="hc-testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div><span class="hc-testimonial-role">BLS Course Participant</span></article>
+      <article class="hc-testimonial-card"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=180&q=85" alt="Healthcare professional" loading="lazy"><blockquote>“The instructor explained each step clearly and patiently.”</blockquote><div class="hc-testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div><span class="hc-testimonial-role">Workplace Training Participant</span></article>
+    </div>
+  </section>
+  <section class="hc-trust-strip" aria-label="Training highlights">
+    <div class="hc-trust-item"><span class="hc-trust-icon">♥</span><div><strong>Hands-on CPR Training</strong><small>Learn practical, life-saving skills.</small></div></div>
+    <div class="hc-trust-item"><span class="hc-trust-icon">✓</span><div><strong>CPR · AED · First Aid</strong><small>Training options for different needs.</small></div></div>
+    <div class="hc-trust-item"><span class="hc-trust-icon">♧</span><div><strong>Individuals &amp; Groups</strong><small>Training for people, teams and workplaces.</small></div></div>
+  </section>
+  <section class="hc-courses" id="courses" aria-label="CPR training courses">
+    <article class="hc-card"><img src="https://www.mlps.ca/sites/default/files/images/group%20cpr%20awaress.jpg" alt="Students practicing CPR on a training manikin"><h2>CPR/AED &amp; First Aid</h2><p>CPR and First Aid classes that meet the industry certification requirements for teachers, coaches, construction workers and more.</p><a href="#training-enquiry">Register Now</a></article>
+    <article class="hc-card"><img src="https://cdn.marblism.com/plEfTI3-ICd.webp" alt="Healthcare trainees practicing Basic Life Support"><h2>BLS Provider &amp; Renewal</h2><p>Basic Life Support – BLS certification meets the CPR requirements needed for healthcare professionals and medical students.</p><a href="#training-enquiry">Register Now</a></article>
+    <article class="hc-card"><img src="https://www.greatplacetowork.com/images/profiles/7002305/company_image_5.webp" alt="Employees practicing CPR in a workplace training session"><h2>Training For Businesses</h2><p>Save time &amp; money. OSHA-compliant workplace training led by expert instructors, scheduled to meet the needs of your business.</p><a href="#training-enquiry">Learn More</a></article>
+  </section>
+  <section class="hc-learn" aria-labelledby="hc-learn-title">
+    <h2 class="hc-learn-heading" id="hc-learn-title">What You’ll Learn</h2>
+    <p class="hc-learn-intro">Build practical skills and confidence to respond when someone needs help.</p>
+    <div class="hc-learn-grid">
+      <article class="hc-learn-card"><img src="https://static.wixstatic.com/media/7968eb_f0208d4ca3934e1382029157673caa14~mv2.jpeg/v1/fill/w_980%2Ch_517%2Cal_c%2Cq_85%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/7968eb_f0208d4ca3934e1382029157673caa14~mv2.jpeg" alt="Instructor teaching CPR and AED skills" loading="lazy"><div class="hc-learn-card-body"><h3>CPR &amp; AED Skills</h3><p>Practice chest compressions, rescue breathing, and how to follow an AED’s prompts.</p></div></article>
+      <article class="hc-learn-card"><img src="https://www.noblex.com.au/images/first-aid-training_h6q61l_c_scale%2Cw_600.jpg" alt="Instructor demonstrating a first aid bandage" loading="lazy"><div class="hc-learn-card-body"><h3>First Aid Response</h3><p>Learn to assess common injuries, provide basic care, and keep a person safe while help is on the way.</p></div></article>
+      <article class="hc-learn-card"><img src="https://cdn.marblism.com/plEfTI3-ICd.webp" alt="Healthcare trainees practicing CPR on a training manikin" loading="lazy"><div class="hc-learn-card-body"><h3>Emergency Readiness</h3><p>Recognize an emergency, communicate clearly, and work with others during a response.</p></div></article>
+    </div>
+  </section>
+  <section class="hc-redcross" aria-label="American Red Cross licensed training provider"><img class="hc-redcross-logo" src="https://www.heartcpr.com/wp-content/uploads/2020/06/Red-Cross-LTP-logo.webp" alt=""><div><strong>American Red Cross</strong><small>Licensed Training Provider</small></div></section>
+  <div class="hc-bottom"></div>
+  <section class="hc-faq" aria-labelledby="hc-faq-title">
+    <h2 id="hc-faq-title">Frequently Asked Questions</h2>
+    <div class="hc-faq-list">
+      <details><summary>What training courses are available?</summary><p>Choose from CPR/AED and First Aid, BLS Provider and Renewal, or workplace group training.</p></details>
+      <details><summary>How long does a class take?</summary><p>Class length depends on the course and format. We’ll confirm the schedule when we follow up about your request.</p></details>
+      <details><summary>Where are classes held?</summary><p>Choose your preferred location in the class finder. We’ll confirm the available class location and details with you.</p></details>
+      <details><summary>Can I arrange training for a group?</summary><p>Yes. Select Workplace Group Training and include your group size and preferred date in your request.</p></details>
+      <details><summary>Will I receive a certificate?</summary><p>Completion and any certificate depend on the selected course and its requirements. Contact us if you need a specific credential.</p></details>
+    </div>
+  </section>
+  <section class="hc-enquiry" id="training-enquiry"><h2>Request CPR Training</h2><form method="post" action="{{ route('cpr-training.store') }}">@csrf<label>Name<input name="name" required autocomplete="name"></label><label>Email<input type="email" name="email" required autocomplete="email"></label><label>Phone<input type="tel" name="phone" required autocomplete="tel"></label><label>Course<select name="course" required><option value="CPR/AED">CPR/AED</option><option value="First Aid + CPR">First Aid + CPR</option><option value="BLS Provider">BLS Provider</option><option value="Workplace Group Training">Workplace Group Training</option></select></label><input type="hidden" name="training_type" value="Individual"><label class="wide">How would you prefer to pay?<select name="payment_preference" required><option value="Online card payment">Pay online by card</option><option value="Bank transfer">Bank transfer</option></select></label><label class="wide">Questions or preferred date<textarea name="message" rows="3"></textarea></label><input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px"><button type="submit">Send Training Request</button></form></section>
+  <footer class="hc-footer">
+    <div class="hc-footer-grid">
+      <div class="hc-footer-brand-block"><div class="hc-footer-brand"><img src="{{ asset('images/dmi-logo-transparent.png') }}" alt=""><span>DMI <b>HEALTHS</b></span></div><p class="hc-footer-tagline">Support for intellectual disability. Practical training for life-saving skills.</p></div>
+      <div><h3>Explore</h3><a href="#courses">CPR &amp; First Aid Classes</a><a href="#class-finder">Find a Class</a><a href="{{ route('services') }}">Our Services</a><a href="{{ route('about') }}">About DMI Healths</a></div>
+      <div><h3>Location</h3><p>{{ config('site.contact.address') }}</p><a href="{{ route('contact') }}">Contact Us</a></div>
+      <div><h3>Contact</h3><a href="tel:{{ config('site.contact.phone') }}">{{ config('site.contact.phone') }}</a><a href="mailto:{{ config('site.contact.email') }}">{{ config('site.contact.email') }}</a><a href="mailto:{{ config('site.contact.support_email') }}">{{ config('site.contact.support_email') }}</a></div>
+    </div>
+    <div class="hc-footer-bottom">© {{ now()->year }} DMI Healths. All rights reserved.</div>
+  </footer>
+  <script>
+    (() => {
+      const modal = document.getElementById('hc-class-modal');
+      const modalForm = document.getElementById('hc-class-modal-form');
+      const status = modal.querySelector('.hc-class-modal-status');
+      const locationSelect = modalForm.elements.location;
+
+      document.querySelectorAll('.heart-cpr-page a[href="#class-finder"]').forEach((link) => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          modal.showModal();
+        });
+      });
+
+      modal.querySelector('.hc-class-modal-close').addEventListener('click', () => modal.close());
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) modal.close();
+      });
+
+      modal.querySelector('.hc-use-location').addEventListener('click', () => {
+        status.textContent = '';
+        if (!navigator.geolocation) {
+          status.textContent = 'Location access is not available in this browser.';
+          return;
+        }
+        status.textContent = 'Finding your location…';
+        navigator.geolocation.getCurrentPosition((position) => {
+          const value = `Current location (${position.coords.latitude.toFixed(3)}, ${position.coords.longitude.toFixed(3)})`;
+          let option = Array.from(locationSelect.options).find((item) => item.value === value);
+          if (!option) {
+            option = new Option(value, value, true, true);
+            locationSelect.add(option);
+          }
+          locationSelect.value = value;
+          status.textContent = 'Your current location is selected.';
+        }, () => {
+          status.textContent = 'Location access was unavailable. Choose a location from the list.';
+        }, { timeout: 10000, maximumAge: 60000 });
+      });
+
+      modalForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const course = modalForm.elements.course.value;
+        const enquiryCourse = document.querySelector('.hc-enquiry select[name="course"]');
+        if (enquiryCourse && Array.from(enquiryCourse.options).some((option) => option.value === course)) {
+          enquiryCourse.value = course;
+        }
+        modal.close();
+        document.getElementById('training-enquiry').scrollIntoView({ behavior: 'smooth' });
+      });
+    })();
+  </script>
+</div>
+@endsection

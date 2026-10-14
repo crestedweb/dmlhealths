@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ $title ?? 'DMI Healths — Support for Intellectual Disability' }}</title>
-<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+<link rel="stylesheet" href="{{ asset('css/app.css') }}?v=20261013-bottom-navy-gradient">
 </head>
 <body>
 
@@ -17,6 +17,7 @@
       <a href="#" class="active">Home</a>
       <a href="{{ route('about') }}">About Us</a>
       <a href="#services">Our Services</a>
+      <a href="{{ route('cpr-training') }}">CPR Training</a>
       <div class="nav-dropdown">
         <button type="button" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Eligibility <span aria-hidden="true">⌄</span></button>
         <div class="nav-dropdown-menu">

@@ -8,7 +8,7 @@ return [
     'images' => [
         'about' => 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1600&q=85',
         'mission' => 'https://images.pexels.com/photos/18509799/pexels-photo-18509799.jpeg?auto=compress&cs=tinysrgb&w=1600',
-        'hero' => 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=3840&q=95',
+        'hero' => '/images/hero.png',
         'care' => 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=85',
         'community' => 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=85',
         'wellness' => 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=85',

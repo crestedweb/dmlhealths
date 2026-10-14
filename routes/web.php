@@ -18,6 +18,11 @@ Route::get('/gallery', fn () => app(PublicPageController::class)->show('gallery'
 Route::get('/team', fn () => app(PublicPageController::class)->show('team'))->name('team');
 Route::get('/services', fn () => app(PublicPageController::class)->service('residential-care'))->name('services');
 Route::get('/services/{service}', [PublicPageController::class, 'service'])->name('service');
+Route::get('/cpr-training', fn () => view('pages.cpr-training', [
+    'title' => 'CPR Training | DMI Healths',
+    'description' => 'Request CPR, First Aid, and workplace training availability in Los Angeles.',
+]))->name('cpr-training');
+Route::post('/cpr-training', [ContactController::class, 'storeTraining'])->middleware('throttle:5,1')->name('cpr-training.store');
 Route::get('/eligibility/{condition}', [PublicPageController::class, 'eligibility'])->name('eligibility');
 Route::get('/contact', [ContactController::class, 'create'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->middleware('throttle:5,1')->name('contact.store');

@@ -57,6 +57,44 @@ class ContactController extends Controller
 
     public function requestInfo() { return view('pages.request-information'); }
 
+    public function storeTraining(Request $request): RedirectResponse
+    {
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:120'],
+            'email' => ['required', 'email', 'max:190'],
+            'phone' => ['required', 'string', 'max:40'],
+            'course' => ['required', 'in:CPR/AED,First Aid + CPR,BLS Provider,Workplace Group Training'],
+            'training_type' => ['required', 'in:Individual,Group / workplace'],
+            'payment_preference' => ['required', 'in:Online card payment,Bank transfer'],
+            'message' => ['nullable', 'string', 'max:2500'],
+            'website' => ['nullable', 'max:0'],
+        ]);
+        unset($data['website']);
+
+        $contact = [
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'subject' => 'CPR training enquiry: ' . $data['course'],
+            'reason' => 'Services',
+            'message' => "Course: {$data['course']}\nTraining type: {$data['training_type']}\nPayment preference: {$data['payment_preference']}\n\n" . ($data['message'] ?: 'No additional details provided.'),
+        ];
+
+        DB::table('contact_messages')->insert($contact + ['created_at' => now(), 'updated_at' => now()]);
+
+        try {
+            Mail::raw($this->contactMessageBody($contact), function ($message) use ($contact) {
+                $message->to(config('site.contact.support_email'))
+                    ->replyTo($contact['email'], $contact['name'])
+                    ->subject($contact['subject']);
+            });
+        } catch (\Throwable $exception) {
+            Log::error('CPR training enquiry email delivery failed.', ['error' => $exception->getMessage()]);
+        }
+
+        return back()->with('status', 'Thank you. Our training team will confirm availability with you shortly.');
+    }
+
     public function storeInfo(Request $request): RedirectResponse
     {
         $data = $request->validate([
