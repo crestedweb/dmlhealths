@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('content')
 <style>
@@ -52,7 +52,7 @@
       <span>DMI <b>HEALTHS</b></span>
     </a>
     <button class="hc-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
-    <div class="hc-actions"><a href="tel:8009151213">☎ 800-915-1213</a><a href="#class-finder">⌕ Find a Class</a></div>
+    <div class="hc-actions"><a href="tel:+16616005915">☎ +1 (661) 600-5915</a><a href="#class-finder">⌕ Find a Class</a></div>
   </header>
   <nav class="hc-nav" aria-label="CPR training navigation"><a href="#courses">CLASSES⌄</a><a href="#courses">ONLINE CLASSES</a><a href="#class-finder">LOCATIONS</a><a href="#courses">GROUP TRAINING</a><a href="#training-enquiry">HELP⌄</a></nav>
   <dialog class="hc-class-modal" id="hc-class-modal" aria-labelledby="hc-class-modal-title">
