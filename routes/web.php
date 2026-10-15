@@ -20,7 +20,7 @@ Route::get('/services', fn () => app(PublicPageController::class)->service('resi
 Route::get('/services/{service}', [PublicPageController::class, 'service'])->name('service');
 Route::get('/cpr-training', fn () => view('pages.cpr-training', [
     'title' => 'CPR Training | DMI Healths',
-    'description' => 'Request CPR, First Aid, and workplace training availability in Los Angeles.',
+    'description' => 'Request CPR, First Aid, and workplace training availability in Palmdale, Los Angeles, CA.',
 ]))->name('cpr-training');
 Route::post('/cpr-training', [ContactController::class, 'storeTraining'])->middleware('throttle:5,1')->name('cpr-training.store');
 Route::get('/eligibility/{condition}', [PublicPageController::class, 'eligibility'])->name('eligibility');

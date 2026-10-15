@@ -63,7 +63,7 @@ class ContactController extends Controller
             'name' => ['required', 'string', 'max:120'],
             'email' => ['required', 'email', 'max:190'],
             'phone' => ['required', 'string', 'max:40'],
-            'course' => ['required', 'in:CPR/AED,First Aid + CPR,BLS Provider,Workplace Group Training'],
+            'course' => ['required', 'in:BLS & BLS Renewal,ACLS & ACLS Renewal,PALS & PALS Renewal,AHA Bundle Courses,First Aid/CPR/AED,Pediatric First Aid/CPR/AED (Childcare),Online Only Courses,Group Training'],
             'training_type' => ['required', 'in:Individual,Group / workplace'],
             'payment_preference' => ['required', 'in:Online card payment,Bank transfer'],
             'message' => ['nullable', 'string', 'max:2500'],

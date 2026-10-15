@@ -62,8 +62,8 @@
       <p class="hc-class-modal-intro">Select a course and location to view available classes near you.</p>
       <form id="hc-class-modal-form">
         <div class="hc-class-modal-fields">
-          <label>Course<select name="course" required><option value="">Select a course</option><option value="CPR/AED">CPR/AED &amp; First Aid</option><option value="First Aid + CPR">First Aid + CPR</option><option value="BLS Provider">BLS Provider</option><option value="Workplace Group Training">Workplace Group Training</option></select></label>
-          <label><span class="hc-class-modal-location-head"><span>Location</span><button class="hc-use-location" type="button">Use My Location</button></span><select name="location" required><option value="">Select location</option><option value="Los Angeles">Los Angeles, California</option></select></label>
+          <label>Course<select name="course" required><option value="">Select a course</option><option value="BLS &amp; BLS Renewal">BLS &amp; BLS Renewal</option><option value="ACLS &amp; ACLS Renewal">ACLS &amp; ACLS Renewal</option><option value="PALS &amp; PALS Renewal">PALS &amp; PALS Renewal</option><option value="AHA Bundle Courses">AHA Bundle Courses</option><option value="First Aid/CPR/AED">First Aid/CPR/AED</option><option value="Pediatric First Aid/CPR/AED (Childcare)">Pediatric First Aid/CPR/AED (Childcare)</option><option value="Online Only Courses">Online Only Courses</option><option value="Group Training">Group Training</option></select></label>
+          <label>Location<select name="location" required><option value="Palmdale, Los Angeles, CA">Palmdale, Los Angeles, CA</option></select></label>
         </div>
         <p class="hc-class-modal-status" aria-live="polite"></p>
         <button class="hc-class-modal-submit" type="submit">Find Class</button>
@@ -78,7 +78,7 @@
         <p class="hc-hero-desc">Get certified with confidence. Our experienced instructors provide hands-on, practical training that prepares you to respond when it matters most.</p>
         <div class="hc-hero-links"><a class="hc-primary-link" href="#class-finder">▦ &nbsp; Find a Class &nbsp; ›</a><a class="hc-secondary-link" href="#courses">▶ &nbsp; View Training Options</a></div>
       </div>
-      <form class="hc-finder" id="class-finder" action="#training-enquiry"><h2>Find a Class Near You</h2><p>Search for available courses in your area and get started today.</p><label>Course<select name="course"><option value="CPR/AED">Select a course</option><option value="First Aid + CPR">First Aid / CPR / AED</option><option value="BLS Provider">BLS Provider &amp; Renewal</option><option value="Workplace Group Training">Group Training</option></select></label><label>Location<select name="location"><option>Select a location</option><option>Los Angeles</option></select></label><button type="submit">⌕ &nbsp; Find Class</button></form>
+      <form class="hc-finder" id="class-finder" action="#training-enquiry"><h2>Find a Class Near You</h2><p>Search for available courses in your area and get started today.</p><label>Course<select name="course" required><option value="">Select a course</option><option value="BLS &amp; BLS Renewal">BLS &amp; BLS Renewal</option><option value="ACLS &amp; ACLS Renewal">ACLS &amp; ACLS Renewal</option><option value="PALS &amp; PALS Renewal">PALS &amp; PALS Renewal</option><option value="AHA Bundle Courses">AHA Bundle Courses</option><option value="First Aid/CPR/AED">First Aid/CPR/AED</option><option value="Pediatric First Aid/CPR/AED (Childcare)">Pediatric First Aid/CPR/AED (Childcare)</option><option value="Online Only Courses">Online Only Courses</option><option value="Group Training">Group Training</option></select></label><label>Location<select name="location" required><option value="">Select a location</option><option value="Palmdale, Los Angeles, CA">Palmdale, Los Angeles, CA</option></select></label><button type="submit">⌕ &nbsp; Find Class</button></form>
     </div>
   </section>
   <section class="hc-testimonials" aria-labelledby="hc-testimonials-title">
@@ -116,17 +116,17 @@
     <div class="hc-faq-list">
       <details><summary>What training courses are available?</summary><p>Choose from CPR/AED and First Aid, BLS Provider and Renewal, or workplace group training.</p></details>
       <details><summary>How long does a class take?</summary><p>Class length depends on the course and format. We’ll confirm the schedule when we follow up about your request.</p></details>
-      <details><summary>Where are classes held?</summary><p>Choose your preferred location in the class finder. We’ll confirm the available class location and details with you.</p></details>
+      <details><summary>Where are classes held?</summary><p>Classes are held in Palmdale, Los Angeles, CA. We’ll confirm availability and class details with you.</p></details>
       <details><summary>Can I arrange training for a group?</summary><p>Yes. Select Workplace Group Training and include your group size and preferred date in your request.</p></details>
       <details><summary>Will I receive a certificate?</summary><p>Completion and any certificate depend on the selected course and its requirements. Contact us if you need a specific credential.</p></details>
     </div>
   </section>
-  <section class="hc-enquiry" id="training-enquiry"><h2>Request CPR Training</h2><form method="post" action="{{ route('cpr-training.store') }}">@csrf<label>Name<input name="name" required autocomplete="name"></label><label>Email<input type="email" name="email" required autocomplete="email"></label><label>Phone<input type="tel" name="phone" required autocomplete="tel"></label><label>Course<select name="course" required><option value="CPR/AED">CPR/AED</option><option value="First Aid + CPR">First Aid + CPR</option><option value="BLS Provider">BLS Provider</option><option value="Workplace Group Training">Workplace Group Training</option></select></label><input type="hidden" name="training_type" value="Individual"><label class="wide">How would you prefer to pay?<select name="payment_preference" required><option value="Online card payment">Pay online by card</option><option value="Bank transfer">Bank transfer</option></select></label><label class="wide">Questions or preferred date<textarea name="message" rows="3"></textarea></label><input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px"><button type="submit">Send Training Request</button></form></section>
+  <section class="hc-enquiry" id="training-enquiry"><h2>Request CPR Training</h2><form method="post" action="{{ route('cpr-training.store') }}">@csrf<label>Name<input name="name" required autocomplete="name"></label><label>Email<input type="email" name="email" required autocomplete="email"></label><label>Phone<input type="tel" name="phone" required autocomplete="tel"></label><label>Course<select name="course" required><option value="">Select a course</option><option value="BLS &amp; BLS Renewal">BLS &amp; BLS Renewal</option><option value="ACLS &amp; ACLS Renewal">ACLS &amp; ACLS Renewal</option><option value="PALS &amp; PALS Renewal">PALS &amp; PALS Renewal</option><option value="AHA Bundle Courses">AHA Bundle Courses</option><option value="First Aid/CPR/AED">First Aid/CPR/AED</option><option value="Pediatric First Aid/CPR/AED (Childcare)">Pediatric First Aid/CPR/AED (Childcare)</option><option value="Online Only Courses">Online Only Courses</option><option value="Group Training">Group Training</option></select></label><input type="hidden" name="training_type" value="Individual"><label class="wide">How would you prefer to pay?<select name="payment_preference" required><option value="Online card payment">Pay online by card</option><option value="Bank transfer">Bank transfer</option></select></label><label class="wide">Questions or preferred date<textarea name="message" rows="3"></textarea></label><input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px"><button type="submit">Send Training Request</button></form></section>
   <footer class="hc-footer">
     <div class="hc-footer-grid">
       <div class="hc-footer-brand-block"><div class="hc-footer-brand"><img src="{{ asset('images/dmi-logo-transparent.png') }}" alt=""><span>DMI <b>HEALTHS</b></span></div><p class="hc-footer-tagline">Support for intellectual disability. Practical training for life-saving skills.</p></div>
       <div><h3>Explore</h3><a href="#courses">CPR &amp; First Aid Classes</a><a href="#class-finder">Find a Class</a><a href="{{ route('services') }}">Our Services</a><a href="{{ route('about') }}">About DMI Healths</a></div>
-      <div><h3>Location</h3><p>{{ config('site.contact.address') }}</p><a href="{{ route('contact') }}">Contact Us</a></div>
+      <div><h3>Location</h3><p>Palmdale, Los Angeles, CA</p><a href="{{ route('contact') }}">Contact Us</a></div>
       <div><h3>Contact</h3><a href="tel:{{ config('site.contact.phone') }}">{{ config('site.contact.phone') }}</a><a href="mailto:{{ config('site.contact.email') }}">{{ config('site.contact.email') }}</a><a href="mailto:{{ config('site.contact.support_email') }}">{{ config('site.contact.support_email') }}</a></div>
     </div>
     <div class="hc-footer-bottom">© {{ now()->year }} DMI Healths. All rights reserved.</div>
@@ -147,7 +147,6 @@
       const modal = document.getElementById('hc-class-modal');
       const modalForm = document.getElementById('hc-class-modal-form');
       const status = modal.querySelector('.hc-class-modal-status');
-      const locationSelect = modalForm.elements.location;
 
       document.querySelectorAll('.heart-cpr-page a[href="#class-finder"]').forEach((link) => {
         link.addEventListener('click', (event) => {
@@ -159,27 +158,6 @@
       modal.querySelector('.hc-class-modal-close').addEventListener('click', () => modal.close());
       modal.addEventListener('click', (event) => {
         if (event.target === modal) modal.close();
-      });
-
-      modal.querySelector('.hc-use-location').addEventListener('click', () => {
-        status.textContent = '';
-        if (!navigator.geolocation) {
-          status.textContent = 'Location access is not available in this browser.';
-          return;
-        }
-        status.textContent = 'Finding your location…';
-        navigator.geolocation.getCurrentPosition((position) => {
-          const value = `Current location (${position.coords.latitude.toFixed(3)}, ${position.coords.longitude.toFixed(3)})`;
-          let option = Array.from(locationSelect.options).find((item) => item.value === value);
-          if (!option) {
-            option = new Option(value, value, true, true);
-            locationSelect.add(option);
-          }
-          locationSelect.value = value;
-          status.textContent = 'Your current location is selected.';
-        }, () => {
-          status.textContent = 'Location access was unavailable. Choose a location from the list.';
-        }, { timeout: 10000, maximumAge: 60000 });
       });
 
       modalForm.addEventListener('submit', (event) => {
