@@ -2,6 +2,24 @@
 
 @section('content')
 <style>
+  body:has(.training-course-page){background:#f6f9fc}
+  body:has(.training-course-page)>header,body:has(.training-course-page)>.site-footer{display:none!important}
+  body:has(.training-course-page) #main{width:100%;max-width:none;margin:0;padding:0}
+  .course-site-header{position:relative;z-index:5;background:#fff;border-bottom:1px solid #0b4f91}
+  .course-site-top{height:70px;max-width:1500px;margin:0 auto;padding:0 5%;display:flex;align-items:center;justify-content:space-between;gap:18px}
+  .course-site-logo{display:flex;align-items:center;gap:9px;flex:0 0 auto;color:#111;font-size:17px;font-weight:800;text-decoration:none}
+  .course-site-logo img{width:52px;height:52px;object-fit:contain}
+  .course-site-logo b{color:#1c8577}
+  .course-site-actions{display:flex;gap:9px;align-items:center}
+  .course-site-actions a{display:inline-flex;min-height:42px;align-items:center;padding:0 17px;border-radius:5px;background:#05265f;color:#fff;font-weight:700;text-decoration:none;white-space:nowrap}
+  .course-site-actions a:last-child{background:#0052a4}
+  .course-site-nav{min-height:42px;padding:0 16px;display:flex;align-items:center;justify-content:center;gap:38px;border-top:1px solid #e5edf5}
+  .course-site-nav a{color:#202020;font-size:15px;font-weight:700;text-decoration:none;white-space:nowrap}
+  .course-site-menu{display:none;width:44px;height:44px;align-items:center;justify-content:center;border:1px solid #d5e0eb;border-radius:8px;background:#fff;color:#123761;font-size:22px}
+  .course-site-footer{padding:25px max(5%,calc((100% - 1440px)/2));background:#41474d;color:#e8edf1}
+  .course-site-footer-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:15px 25px}
+  .course-site-footer p{margin:0;font-size:13px;line-height:1.7}
+  .course-site-footer a{color:#fff}
   .training-course-page{--course-blue:#0b376d;--course-accent:#087e83;background:#f6f9fc;color:#16324b;padding:34px 20px 72px}
   .training-course-wrap{width:min(1160px,100%);margin:0 auto}
   .training-course-crumbs{display:flex;gap:9px;align-items:center;margin:0 0 22px;color:#67809a;font-size:13px}
@@ -36,7 +54,20 @@
   .training-course-wrap,.training-course-hero>div,.training-course-panel{min-width:0}
   .training-course-hero h1,.training-course-crumbs span,.training-course-panel,.training-course-note{overflow-wrap:anywhere}
   @media(max-width:520px){.training-course-page{padding:18px 12px 36px}.training-course-crumbs{gap:6px;margin-bottom:14px;font-size:12px;flex-wrap:wrap}.training-course-hero{gap:17px;padding:16px;border-radius:15px}.training-course-photo img{height:clamp(190px,58vw,270px);border-radius:11px}.training-course-kicker{font-size:10px;letter-spacing:.1em}.training-course-hero h1{font-size:clamp(29px,9vw,38px)}.training-course-summary{font-size:15px;line-height:1.55}.training-course-actions{display:grid;grid-template-columns:1fr;gap:9px;margin-top:18px}.training-course-actions a{width:100%;min-height:48px;padding:10px 12px;text-align:center}.training-course-location{align-items:flex-start;font-size:12px;line-height:1.5}.training-course-info{gap:12px;margin-top:14px}.training-course-panel{padding:19px 17px;border-radius:13px}.training-course-panel h2{font-size:19px}.training-course-panel p,.training-course-panel ul{font-size:14px}.training-course-note{padding:15px 16px;font-size:13px}.training-course-bottom{gap:15px;margin-top:14px;padding:19px;border-radius:13px}.training-course-bottom h2{font-size:19px}.training-course-bottom a{width:100%;min-height:48px;justify-content:center;text-align:center}.training-course-photo figcaption{text-align:left;line-height:1.5}}
+  @media(max-width:760px){.course-site-top{height:60px;padding:0 14px}.course-site-logo{font-size:14px}.course-site-logo img{width:44px;height:44px}.course-site-actions{margin-left:auto}.course-site-actions a{min-height:38px;padding:0 10px;font-size:12px}.course-site-menu{display:inline-flex;flex:0 0 auto}.course-site-nav{display:none;align-items:stretch;gap:0;padding:6px 18px 12px;flex-direction:column}.course-site-nav.is-open{display:flex}.course-site-nav a{padding:12px 0;border-bottom:1px solid #e8edf2;font-size:14px}.course-site-nav a:last-child{border-bottom:0}}
+  @media(max-width:420px){.course-site-top{gap:8px;padding:0 10px}.course-site-logo{gap:5px;font-size:12px}.course-site-logo img{width:38px;height:38px}.course-site-actions a{padding:0 8px;font-size:11px}.course-site-actions a:last-child{display:none}}
 </style>
+
+<header class="course-site-header">
+  <div class="course-site-top">
+    <a class="course-site-logo" href="{{ route('cpr-training') }}" aria-label="DMI Healths CPR Training home"><img src="{{ asset('images/dmi-logo-transparent.png') }}" alt=""><span>DMI <b>HEALTHS</b></span></a>
+    <div class="course-site-actions"><a href="tel:+16616005915">☎ +1 (661) 600-5915</a><a href="{{ route('cpr-training') }}#class-finder">Find a Class</a></div>
+    <button class="course-site-menu" type="button" aria-label="Open CPR training navigation" aria-expanded="false">☰</button>
+  </div>
+  <nav class="course-site-nav" aria-label="CPR training navigation">
+    <a href="{{ route('cpr-training') }}#courses">CLASSES</a><a href="{{ route('cpr-training') }}#courses">ONLINE CLASSES</a><a href="{{ route('cpr-training') }}#class-finder">LOCATIONS</a><a href="{{ route('cpr-training') }}#courses">GROUP TRAINING</a><a href="{{ route('cpr-training') }}#training-enquiry">HELP</a>
+  </nav>
+</header>
 
 <div class="training-course-page">
   <div class="training-course-wrap">
@@ -87,4 +118,16 @@
     </section>
   </div>
 </div>
+<footer class="course-site-footer"><div class="course-site-footer-inner"><p>© {{ now()->year }} DMI Healths. All rights reserved.</p><p>Palmdale, Los Angeles, CA · <a href="tel:+16616005915">+1 (661) 600-5915</a></p><p><a href="{{ route('cpr-training') }}">Back to CPR Training</a></p></div></footer>
+<script>
+  (() => {
+    const button = document.querySelector('.course-site-menu');
+    const nav = document.querySelector('.course-site-nav');
+    button?.addEventListener('click', () => {
+      const expanded = nav.classList.toggle('is-open');
+      button.setAttribute('aria-expanded', String(expanded));
+      button.setAttribute('aria-label', expanded ? 'Close CPR training navigation' : 'Open CPR training navigation');
+    });
+  })();
+</script>
 @endsection
