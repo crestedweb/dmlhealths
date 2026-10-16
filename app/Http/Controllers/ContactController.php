@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\Rule;
 
 class ContactController extends Controller
 {
@@ -63,7 +64,7 @@ class ContactController extends Controller
             'name' => ['required', 'string', 'max:120'],
             'email' => ['required', 'email', 'max:190'],
             'phone' => ['required', 'string', 'max:40'],
-            'course' => ['required', 'in:BLS & BLS Renewal,ACLS & ACLS Renewal,PALS & PALS Renewal,AHA Bundle Courses,First Aid/CPR/AED,Pediatric First Aid/CPR/AED (Childcare),Online Only Courses,Group Training'],
+            'course' => ['required', Rule::in(array_column(config('training_courses'), 'name'))],
             'training_type' => ['required', 'in:Individual,Group / workplace'],
             'payment_preference' => ['required', 'in:Online card payment,Bank transfer'],
             'message' => ['nullable', 'string', 'max:2500'],

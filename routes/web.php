@@ -22,6 +22,17 @@ Route::get('/cpr-training', fn () => view('pages.cpr-training', [
     'title' => 'CPR Training | DMI Healths',
     'description' => 'Request CPR, First Aid, and workplace training availability in Palmdale, Los Angeles, CA.',
 ]))->name('cpr-training');
+Route::get('/cpr-training/courses/{slug}', function (string $slug) {
+    $course = config("training_courses.{$slug}");
+
+    abort_if(! $course, 404);
+
+    return view('pages.cpr-course', [
+        'course' => $course,
+        'title' => $course['name'] . ' | CPR Training | DMI Healths',
+        'description' => $course['summary'],
+    ]);
+})->name('cpr-training.course');
 Route::post('/cpr-training', [ContactController::class, 'storeTraining'])->middleware('throttle:5,1')->name('cpr-training.store');
 Route::get('/eligibility/{condition}', [PublicPageController::class, 'eligibility'])->name('eligibility');
 Route::get('/contact', [ContactController::class, 'create'])->name('contact');
