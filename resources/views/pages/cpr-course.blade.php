@@ -88,7 +88,6 @@
       </div>
       <figure class="training-course-photo">
         <img src="{{ asset($course['image']) }}" alt="{{ $course['image_alt'] }}" fetchpriority="high">
-        <figcaption>Photo by {{ $course['photo_credit'] }} on <a href="{{ $course['photo_url'] }}" target="_blank" rel="noopener noreferrer">Pexels</a></figcaption>
       </figure>
     </section>
 

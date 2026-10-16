@@ -6,8 +6,6 @@ return [
         'category' => 'Healthcare training',
         'image' => 'images/training/bls-training.jpg',
         'image_alt' => 'Healthcare professional practicing with a patient simulator in a clinical training room',
-        'photo_credit' => 'Sahil Singh / Pexels',
-        'photo_url' => 'https://www.pexels.com/photo/nurse-trainee-with-medical-dummy-in-simulation-lab-35645531/',
         'summary' => 'Build or refresh the Basic Life Support skills needed for healthcare roles. Tell us whether you need initial training or renewal.',
         'audience' => 'Healthcare professionals, clinical staff, and students whose role or program requires BLS training.',
         'planning' => [
@@ -21,8 +19,6 @@ return [
         'category' => 'Healthcare training',
         'image' => 'images/training/acls-training.jpg',
         'image_alt' => 'Nurse practicing clinical skills on a medical training manikin',
-        'photo_credit' => 'Sahil Singh / Pexels',
-        'photo_url' => 'https://www.pexels.com/photo/nurse-practicing-on-medical-training-manikin-35645520/',
         'summary' => 'Request Advanced Cardiovascular Life Support training or renewal for a healthcare role. We will confirm the course requirements with you.',
         'audience' => 'Healthcare professionals whose role, employer, or program requires ACLS training.',
         'planning' => [
@@ -36,8 +32,6 @@ return [
         'category' => 'Healthcare training',
         'image' => 'images/training/pals-training.jpg',
         'image_alt' => 'Hands-on pediatric life-support practice using an infant training manikin',
-        'photo_credit' => 'SHOX ART / Pexels',
-        'photo_url' => 'https://www.pexels.com/photo/cpr-first-aid-cardiopulmonary-resuscitation-child-kid-newborn-pierwsza-pomoc-ratowanie-zycia-28271057/',
         'summary' => 'Request Pediatric Advanced Life Support training or renewal for healthcare work involving infants and children.',
         'audience' => 'Healthcare professionals whose role, employer, or program requires PALS training.',
         'planning' => [
@@ -51,8 +45,6 @@ return [
         'category' => 'Course bundles',
         'image' => 'images/training/aha-bundle-training.jpg',
         'image_alt' => 'Participants practicing CPR skills together on training manikins',
-        'photo_credit' => 'Tahir Xəlfəquliyev / Pexels',
-        'photo_url' => 'https://www.pexels.com/photo/women-practicing-cpr-on-mannequins-in-workshop-33317473/',
         'summary' => 'Ask about combining courses into an AHA bundle that fits your training needs and schedule.',
         'audience' => 'Individuals or organizations looking for more than one course in a coordinated request.',
         'planning' => [
@@ -66,8 +58,6 @@ return [
         'category' => 'First aid and CPR',
         'image' => 'images/training/first-aid-cpr-aed.jpg',
         'image_alt' => 'CPR practice on a training manikin during a first aid course',
-        'photo_credit' => 'Tahir Xəlfəquliyev / Pexels',
-        'photo_url' => 'https://www.pexels.com/photo/cpr-training-with-mannequin-dummy-indoors-33862096/',
         'summary' => 'Prepare to respond to common emergencies with a First Aid, CPR, and AED course option.',
         'audience' => 'People seeking practical emergency-response training for work, school, or everyday readiness.',
         'planning' => [
@@ -81,8 +71,6 @@ return [
         'category' => 'Childcare training',
         'image' => 'images/training/pediatric-first-aid.jpg',
         'image_alt' => 'Childcare learners practicing CPR skills with an instructor and training manikin',
-        'photo_credit' => 'Tahir Xəlfəquliyev / Pexels',
-        'photo_url' => 'https://www.pexels.com/photo/children-learning-cpr-in-safety-training-class-34082713/',
         'summary' => 'Explore pediatric First Aid, CPR, and AED training options for childcare and education settings.',
         'audience' => 'Childcare providers, teachers, and caregivers who need training for work with children.',
         'planning' => [
@@ -96,8 +84,6 @@ return [
         'category' => 'Online learning',
         'image' => 'images/training/online-courses.jpg',
         'image_alt' => 'Learner taking part in an online class on a laptop',
-        'photo_credit' => 'cottonbro studio / Pexels',
-        'photo_url' => 'https://www.pexels.com/photo/online-class-in-a-laptop-7013900/',
         'summary' => 'Ask about courses available online and the requirements for completing the option you need.',
         'audience' => 'Learners looking for an online course option for work, school, or personal development.',
         'planning' => [
@@ -111,8 +97,6 @@ return [
         'category' => 'Teams and workplaces',
         'image' => 'images/training/group-training.jpg',
         'image_alt' => 'A group practicing CPR together on training manikins',
-        'photo_credit' => 'Guilhemro / Pexels',
-        'photo_url' => 'https://www.pexels.com/photo/medical-training-session-in-brazilian-classroom-36380795/',
         'summary' => 'Request CPR or First Aid training for your team, workplace, or organization in Palmdale.',
         'audience' => 'Businesses, schools, community organizations, and teams arranging training for multiple people.',
         'planning' => [
