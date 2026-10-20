@@ -14,7 +14,7 @@
   .consult-brand img{width:52px;height:52px;object-fit:contain}.consult-brand b{color:#16827c}
   .consult-call{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:0 18px;border-radius:10px;background:var(--navy);color:#fff;text-decoration:none;font-weight:750;white-space:nowrap}
   .consult-nav{display:flex;justify-content:center;align-items:center;gap:clamp(16px,3vw,42px);padding:13px 16px;border-top:1px solid #edf1f5}
-  .consult-nav a{color:#172331;font-size:13px;font-weight:800;text-decoration:none;white-space:nowrap}.consult-nav a:hover{color:var(--blue)}
+  .consult-nav a{color:#172331;font-size:13px;font-weight:800;text-decoration:none;white-space:nowrap}.consult-nav a:hover{color:var(--blue)}.consult-nav .consultation-nav-link{padding:8px 13px;border:1px solid #c6e7e3;border-radius:999px;background:#eaf7f5;color:#08746f}.consult-nav .consultation-nav-link[aria-current="page"]{background:#08746f;border-color:#08746f;color:#fff}
   .consult-wrap{width:min(1200px,calc(100% - 40px));margin:auto;padding:28px 0 66px}
   .consult-crumb{display:flex;gap:10px;align-items:center;margin:0 0 20px;color:#708399;font-size:14px}.consult-crumb a{color:#0758a5;font-weight:750;text-decoration:none}
   .consult-hero{overflow:hidden;display:grid;grid-template-columns:1.03fr .97fr;background:#fff;border:1px solid #e3ebf3;border-radius:24px;box-shadow:0 18px 48px rgba(11,48,86,.09)}
@@ -47,7 +47,7 @@
       <a class="consult-call" href="tel:+16616005915" aria-label="Call +1 (661) 600-5915">☎ <span>+1 (661) 600-5915</span></a>
     </div>
     <nav class="consult-nav" aria-label="CPR training navigation">
-      <a href="{{ route('cpr-training') }}#courses">CLASSES</a><a href="{{ route('cpr-training') }}#courses">ONLINE CLASSES</a><a href="{{ route('cpr-training') }}#class-finder">LOCATIONS</a><a href="{{ route('cpr-training') }}#courses">GROUP TRAINING</a><a href="{{ route('cpr-training.consultation') }}" aria-current="page">CONSULTATION</a><a href="{{ route('cpr-training') }}#training-enquiry">HELP</a>
+      <a href="{{ route('cpr-training') }}#courses">CLASSES</a><a href="{{ route('cpr-training') }}#courses">ONLINE CLASSES</a><a href="{{ route('cpr-training') }}#class-finder">LOCATIONS</a><a href="{{ route('cpr-training') }}#courses">GROUP TRAINING</a><a class="consultation-nav-link" href="{{ route('cpr-training.consultation') }}" aria-current="page">CONSULTATION</a><a href="{{ route('cpr-training') }}#training-enquiry">HELP</a>
     </nav>
   </header>
 

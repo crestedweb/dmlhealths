@@ -10,7 +10,7 @@
   .hc-logo {display:flex;align-items:center;gap:5px;color:#111;font-weight:800;font-size:13px;line-height:1;text-decoration:none}
   .hc-logo-mark {width:48px;height:48px;object-fit:contain;border-radius:6px}.hc-logo span b{color:#1c8577}
   .hc-actions{display:flex;gap:9px}.hc-actions a{background:#05265f;color:#fff;text-decoration:none;border-radius:3px;padding:9px 24px;font-size:13px;font-weight:bold}.hc-actions a:last-child{background:#0052a4}
-  .hc-nav{height:32px;border-bottom:1px solid #0b4f91;display:flex;align-items:center;justify-content:center;gap:38px;background:#fff}.hc-nav a{font-size:13px;font-weight:bold;color:#222;text-decoration:none}
+  .hc-nav{height:32px;border-bottom:1px solid #0b4f91;display:flex;align-items:center;justify-content:center;gap:38px;background:#fff}.hc-nav a{font-size:13px;font-weight:bold;color:#222;text-decoration:none}.hc-nav .hc-consultation-link{padding:6px 11px;border:1px solid #c6e7e3;border-radius:999px;background:#eaf7f5;color:#08746f;font-weight:800;transition:background .15s,color .15s,box-shadow .15s}.hc-nav .hc-consultation-link:hover{background:#08746f;color:#fff;box-shadow:0 3px 10px rgba(8,116,111,.18)}
   .heart-cpr-page select option.first-aid-course-option{color:#c62828;font-weight:700}
   .hc-hero{height:290px;position:relative;background:linear-gradient(0deg,rgba(0,0,0,.05),rgba(0,0,0,.15)),url('{{ asset('images/hero5.jpg') }}') center 42%/cover;display:flex;justify-content:center;align-items:flex-start;color:white;text-align:center}
   .hc-hero h1{font-size:clamp(30px,3vw,44px);line-height:1.08;margin:15px 12px 0;text-shadow:0 1px 4px #555}.hc-hero h1 small{display:block;font-size:.58em;margin-top:2px}
@@ -75,7 +75,7 @@
     <button class="hc-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
     <div class="hc-actions"><a href="tel:+16616005915">☎ +1 (661) 600-5915</a><a href="#class-finder">⌕ Find a Class</a></div>
   </header>
-  <nav class="hc-nav" aria-label="CPR training navigation"><a href="#courses">CLASSES⌄</a><a href="#courses">ONLINE CLASSES</a><a href="#class-finder">LOCATIONS</a><a href="#courses">GROUP TRAINING</a><a href="{{ route('cpr-training.consultation') }}">CONSULTATION</a><a href="#training-enquiry">HELP⌄</a></nav>
+  <nav class="hc-nav" aria-label="CPR training navigation"><a href="#courses">CLASSES⌄</a><a href="#courses">ONLINE CLASSES</a><a href="#class-finder">LOCATIONS</a><a href="#courses">GROUP TRAINING</a><a class="hc-consultation-link" href="{{ route('cpr-training.consultation') }}">CONSULTATION</a><a href="#training-enquiry">HELP⌄</a></nav>
   <dialog class="hc-class-modal" id="hc-class-modal" aria-labelledby="hc-class-modal-title">
     <div class="hc-class-modal-inner">
       <button class="hc-class-modal-close" type="button" aria-label="Close class search">×</button>

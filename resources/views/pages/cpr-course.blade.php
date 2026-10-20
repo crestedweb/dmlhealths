@@ -14,7 +14,7 @@
   .course-site-actions a{display:inline-flex;min-height:42px;align-items:center;padding:0 17px;border-radius:5px;background:#05265f;color:#fff;font-weight:700;text-decoration:none;white-space:nowrap}
   .course-site-actions a:last-child{background:#0052a4}
   .course-site-nav{min-height:42px;padding:0 16px;display:flex;align-items:center;justify-content:center;gap:38px;border-top:1px solid #e5edf5}
-  .course-site-nav a{color:#202020;font-size:15px;font-weight:700;text-decoration:none;white-space:nowrap}
+  .course-site-nav a{color:#202020;font-size:15px;font-weight:700;text-decoration:none;white-space:nowrap}.course-site-nav .course-consultation-link{padding:8px 13px;border:1px solid #c6e7e3;border-radius:999px;background:#eaf7f5;color:#08746f;font-weight:800;transition:background .15s,color .15s,box-shadow .15s}.course-site-nav .course-consultation-link:hover{background:#08746f;color:#fff;box-shadow:0 3px 10px rgba(8,116,111,.18)}
   .course-site-menu{display:none;width:44px;height:44px;align-items:center;justify-content:center;border:1px solid #d5e0eb;border-radius:8px;background:#fff;color:#123761;font-size:22px}
   .course-site-footer{padding:25px max(5%,calc((100% - 1440px)/2));background:#41474d;color:#e8edf1}
   .course-site-footer-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:15px 25px}
@@ -82,7 +82,7 @@
     <button class="course-site-menu" type="button" aria-label="Open CPR training navigation" aria-expanded="false">☰</button>
   </div>
   <nav class="course-site-nav" aria-label="CPR training navigation">
-    <a href="{{ route('cpr-training') }}#courses">CLASSES</a><a href="{{ route('cpr-training') }}#courses">ONLINE CLASSES</a><a href="{{ route('cpr-training') }}#class-finder">LOCATIONS</a><a href="{{ route('cpr-training') }}#courses">GROUP TRAINING</a><a href="{{ route('cpr-training.consultation') }}">CONSULTATION</a><a href="{{ route('cpr-training') }}#training-enquiry">HELP</a>
+    <a href="{{ route('cpr-training') }}#courses">CLASSES</a><a href="{{ route('cpr-training') }}#courses">ONLINE CLASSES</a><a href="{{ route('cpr-training') }}#class-finder">LOCATIONS</a><a href="{{ route('cpr-training') }}#courses">GROUP TRAINING</a><a class="course-consultation-link" href="{{ route('cpr-training.consultation') }}">CONSULTATION</a><a href="{{ route('cpr-training') }}#training-enquiry">HELP</a>
   </nav>
 </header>
 
