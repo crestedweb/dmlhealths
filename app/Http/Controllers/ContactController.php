@@ -96,6 +96,44 @@ class ContactController extends Controller
         return back()->with('status', 'Thank you. Our training team will confirm availability with you shortly.');
     }
 
+    public function storeConsultation(Request $request): RedirectResponse
+    {
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:120'],
+            'email' => ['required', 'email', 'max:190'],
+            'phone' => ['required', 'string', 'max:40'],
+            'course' => ['nullable', Rule::in(array_column(config('training_courses'), 'name'))],
+            'format' => ['required', 'in:In-person in Palmdale,Online,Hybrid (online and in-person),Not sure yet'],
+            'preferred_contact' => ['required', 'in:Email,Phone'],
+            'message' => ['nullable', 'string', 'max:2500'],
+            'website' => ['nullable', 'max:0'],
+        ]);
+        unset($data['website']);
+
+        $contact = [
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'subject' => 'Free CPR training consultation request',
+            'reason' => 'Services',
+            'message' => "Course of interest: " . ($data['course'] ?: 'Not sure yet') . "\nTraining format: {$data['format']}\nPreferred contact: {$data['preferred_contact']}\nConsultation fee: None\n\n" . ($data['message'] ?: 'No additional questions provided.'),
+        ];
+
+        DB::table('contact_messages')->insert($contact + ['created_at' => now(), 'updated_at' => now()]);
+
+        try {
+            Mail::raw($this->contactMessageBody($contact), function ($message) use ($contact) {
+                $message->to(config('site.contact.support_email'))
+                    ->replyTo($contact['email'], $contact['name'])
+                    ->subject($contact['subject']);
+            });
+        } catch (\Throwable $exception) {
+            Log::error('CPR consultation request email delivery failed.', ['error' => $exception->getMessage()]);
+        }
+
+        return redirect()->route('cpr-training.consultation')->with('status', 'Thanks for reaching out. Your free consultation request has been received. Our training team will contact you to discuss options.');
+    }
+
     public function storeInfo(Request $request): RedirectResponse
     {
         $data = $request->validate([

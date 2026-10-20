@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ $title ?? 'DMI Healths — Support for Intellectual Disability' }}</title>
-<link rel="stylesheet" href="{{ asset('css/app.css') }}?v=20261013-bottom-navy-gradient">
+<link rel="stylesheet" href="{{ asset('css/app.css') }}?v=20261021-warm-home-hero">
 </head>
 <body>
 
@@ -43,14 +43,24 @@
       <img class="photo hero-photo" src="{{ config('site.images.hero') }}" alt="A care professional supporting an adult wheelchair user in a welcoming care setting">
     </div>
     <div class="hero-text">
-      <h1>Care That Sees the Person, Not Just the Need.</h1>
-      <p class="desc">DMI Healths provides personalised residential care and support for adults with intellectual and developmental disabilities, helping them live safe, healthy and fulfilling lives.</p>
+      <p class="hero-kicker">Person-centred support <span aria-hidden="true">•</span> DMI Healths</p>
+      <h1><span>Care That Sees</span><span>the Person,</span><span>Not Just the Need.</span></h1>
+      <p class="desc">Personalized residential care and support for adults with intellectual and developmental disabilities—helping people live safe, healthy, and fulfilling lives.</p>
       <div class="hero-btns">
         <a href="#services" class="hero-btn">Explore Our Services →</a>
-        <a href="#life" class="hero-btn ghost community-showcase">Community Showcase</a>
+        <a href="#life" class="hero-btn ghost community-showcase">Meet Our Community</a>
         <a href="tel:+16616005915" class="hero-btn ghost mobile-call-button">Call Us</a>
       </div>
+      <div class="hero-values" aria-label="Our values">
+        <span class="hero-values-rule" aria-hidden="true"></span>
+        <span class="hero-value"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3.5 20c0-3.3 2.2-5.5 5.5-5.5s5.5 2.2 5.5 5.5"></path><path d="M15 5.5a2.5 2.5 0 010 5M17 14.5c2.2.6 3.5 2.4 3.5 5.5"></path></svg>Person-centred care</span>
+        <span class="hero-value-divider" aria-hidden="true"></span>
+        <span class="hero-value"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v5.5c0 4.6-3 7.7-8 9.5-5-1.8-8-4.9-8-9.5V6l8-3z"></path><path d="M8.5 12l2.2 2.2 4.8-5"></path></svg>Dignity</span>
+        <span class="hero-value-divider" aria-hidden="true"></span>
+        <span class="hero-value"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.8c0 5-8.8 10.2-8.8 10.2S3.2 13.8 3.2 8.8a4.6 4.6 0 018.8-1.7 4.6 4.6 0 018.8 1.7z"></path></svg>Belonging</span>
+      </div>
     </div>
+    <svg class="hero-wave" viewBox="0 0 1600 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46C185 8 322 22 495 57c166 34 278 12 423-7 173-23 310 20 447 12 91-5 165-30 235-53v91H0z"></path></svg>
   </div>
 </section>
 

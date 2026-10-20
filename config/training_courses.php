@@ -54,7 +54,7 @@ return [
         ],
     ],
     'first-aid-cpr-aed' => [
-        'name' => 'First Aid/CPR/AED',
+        'name' => 'Adult First Aid/CPR/AED',
         'category' => 'First aid and CPR',
         'image' => 'images/training/first-aid-cpr-aed.jpg',
         'image_alt' => 'CPR practice on a training manikin during a first aid course',
@@ -64,6 +64,11 @@ return [
             'Tell us where the training is required, such as work, school, or a personal goal.',
             'Share any employer or organization requirements.',
             'Our team will confirm the course format, schedule, and completion details.',
+        ],
+        'pricing_options' => [
+            ['name' => 'Red Cross Adult First Aid/CPR/AED Online', 'format' => 'Online course', 'price' => 45, 'description' => 'Adult First Aid, CPR, and AED course online.'],
+            ['name' => 'Red Cross Adult First Aid/CPR/AED (in person)', 'format' => 'In-person training', 'price' => 75, 'description' => 'Adult First Aid, CPR, and AED training in person.'],
+            ['name' => 'Red Cross Adult/Pediatric First Aid/CPR/AED (in person)', 'format' => 'In-person training', 'price' => 100, 'description' => 'Combined adult and pediatric First Aid, CPR, and AED training.'],
         ],
     ],
     'pediatric-first-aid-cpr-aed' => [
@@ -77,6 +82,11 @@ return [
             'Tell us the age groups and setting relevant to your role.',
             'Share any licensing, employer, or program requirements.',
             'Our team will confirm which course option and schedule fit your needs.',
+        ],
+        'pricing_options' => [
+            ['name' => 'Red Cross Adult/Pediatric First Aid/CPR/AED (in person)', 'format' => 'In-person training', 'price' => 100, 'description' => 'Combined adult and pediatric First Aid, CPR, and AED training.'],
+            ['name' => 'Red Cross Pediatric First Aid/CPR/AED (in person)', 'format' => 'In-person training', 'price' => 60, 'description' => 'Pediatric First Aid, CPR, and AED training in person.'],
+            ['name' => 'Red Cross Pediatric First Aid/CPR/AED (Hybrid- Online/in person)', 'format' => 'Hybrid training', 'price' => 100, 'description' => 'A mix of online learning and in-person training.'],
         ],
     ],
     'online-only-courses' => [

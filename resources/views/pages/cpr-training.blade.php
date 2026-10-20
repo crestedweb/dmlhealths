@@ -11,6 +11,7 @@
   .hc-logo-mark {width:48px;height:48px;object-fit:contain;border-radius:6px}.hc-logo span b{color:#1c8577}
   .hc-actions{display:flex;gap:9px}.hc-actions a{background:#05265f;color:#fff;text-decoration:none;border-radius:3px;padding:9px 24px;font-size:13px;font-weight:bold}.hc-actions a:last-child{background:#0052a4}
   .hc-nav{height:32px;border-bottom:1px solid #0b4f91;display:flex;align-items:center;justify-content:center;gap:38px;background:#fff}.hc-nav a{font-size:13px;font-weight:bold;color:#222;text-decoration:none}
+  .heart-cpr-page select option.first-aid-course-option{color:#c62828;font-weight:700}
   .hc-hero{height:290px;position:relative;background:linear-gradient(0deg,rgba(0,0,0,.05),rgba(0,0,0,.15)),url('{{ asset('images/hero5.jpg') }}') center 42%/cover;display:flex;justify-content:center;align-items:flex-start;color:white;text-align:center}
   .hc-hero h1{font-size:clamp(30px,3vw,44px);line-height:1.08;margin:15px 12px 0;text-shadow:0 1px 4px #555}.hc-hero h1 small{display:block;font-size:.58em;margin-top:2px}
   .hc-finder{position:absolute;right:21%;top:82px;width:215px;padding:13px 12px 12px;background:rgba(255,255,255,.96);border-radius:8px;color:#222;text-align:left;box-shadow:0 2px 12px #5556}
@@ -67,14 +68,14 @@
 </style>
 <div class="heart-cpr-page">
   <header class="hc-top">
-    <a class="hc-logo" href="{{ route('home') }}" aria-label="DMI Healths home">
+    <a class="hc-logo" href="{{ route('cpr-training') }}" aria-label="CPR Training home">
       <img class="hc-logo-mark" src="{{ asset('images/dmi-logo-transparent.png') }}" alt="">
-      <span>DMI <b>HEALTHS</b></span>
+      <span>CPR <b>TRAINING</b></span>
     </a>
     <button class="hc-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
     <div class="hc-actions"><a href="tel:+16616005915">☎ +1 (661) 600-5915</a><a href="#class-finder">⌕ Find a Class</a></div>
   </header>
-  <nav class="hc-nav" aria-label="CPR training navigation"><a href="#courses">CLASSES⌄</a><a href="#courses">ONLINE CLASSES</a><a href="#class-finder">LOCATIONS</a><a href="#courses">GROUP TRAINING</a><a href="#training-enquiry">HELP⌄</a></nav>
+  <nav class="hc-nav" aria-label="CPR training navigation"><a href="#courses">CLASSES⌄</a><a href="#courses">ONLINE CLASSES</a><a href="#class-finder">LOCATIONS</a><a href="#courses">GROUP TRAINING</a><a href="{{ route('cpr-training.consultation') }}">CONSULTATION</a><a href="#training-enquiry">HELP⌄</a></nav>
   <dialog class="hc-class-modal" id="hc-class-modal" aria-labelledby="hc-class-modal-title">
     <div class="hc-class-modal-inner">
       <button class="hc-class-modal-close" type="button" aria-label="Close class search">×</button>
@@ -82,7 +83,7 @@
       <p class="hc-class-modal-intro">Select a course and location to view available classes near you.</p>
       <form id="hc-class-modal-form">
         <div class="hc-class-modal-fields">
-          <label>Course<select name="course" required><option value="">Select a course</option>@foreach(config('training_courses') as $course)<option value="{{ $course['name'] }}">{{ $course['name'] }}</option>@endforeach</select></label>
+          <label>Course<select name="course" required><option value="">Select a course</option>@foreach(config('training_courses') as $course)<option value="{{ $course['name'] }}" @class(['first-aid-course-option' => str_contains($course['name'], 'First Aid')])>@if(str_contains($course['name'], 'First Aid'))&#10010; @endif{{ $course['name'] }}</option>@endforeach</select></label>
           <label>Location<select name="location" required><option value="Palmdale, Los Angeles, CA">Palmdale, Los Angeles, CA</option></select></label>
         </div>
         <p class="hc-class-modal-status" aria-live="polite"></p>
@@ -98,7 +99,7 @@
         <p class="hc-hero-desc">Explore CPR, First Aid, healthcare, childcare, and online course options. Choose a course to see details and request availability in Palmdale.</p>
         <div class="hc-hero-links"><a class="hc-primary-link" href="#class-finder">▦ &nbsp; Find a Class &nbsp; ›</a><a class="hc-secondary-link" href="#courses">▶ &nbsp; View Training Options</a></div>
       </div>
-      <form class="hc-finder" id="class-finder" action="#training-enquiry"><h2>Find a Class Near You</h2><p>Search for available courses in your area and get started today.</p><label>Course<select name="course" required><option value="">Select a course</option>@foreach(config('training_courses') as $course)<option value="{{ $course['name'] }}">{{ $course['name'] }}</option>@endforeach</select></label><label>Location<select name="location" required><option value="">Select a location</option><option value="Palmdale, Los Angeles, CA">Palmdale, Los Angeles, CA</option></select></label><button type="submit">⌕ &nbsp; Find Class</button></form>
+      <form class="hc-finder" id="class-finder" action="#training-enquiry"><h2>Find a Class Near You</h2><p>Search for available courses in your area and get started today.</p><label>Course<select name="course" required><option value="">Select a course</option>@foreach(config('training_courses') as $course)<option value="{{ $course['name'] }}" @class(['first-aid-course-option' => str_contains($course['name'], 'First Aid')])>@if(str_contains($course['name'], 'First Aid'))&#10010; @endif{{ $course['name'] }}</option>@endforeach</select></label><label>Location<select name="location" required><option value="">Select a location</option><option value="Palmdale, Los Angeles, CA">Palmdale, Los Angeles, CA</option></select></label><button type="submit">⌕ &nbsp; Find Class</button></form>
     </div>
   </section>
   <section class="hc-testimonials" aria-labelledby="hc-testimonials-title">
@@ -140,14 +141,14 @@
   <section class="hc-faq" aria-labelledby="hc-faq-title">
     <h2 id="hc-faq-title">Frequently Asked Questions</h2>
     <div class="hc-faq-list">
-      <details><summary>What training courses are available?</summary><p>We offer BLS, ACLS, PALS, AHA bundle, First Aid/CPR/AED, pediatric childcare, online-only, and group training request options.</p></details>
+      <details><summary>What training courses are available?</summary><p>We offer BLS, ACLS, PALS, AHA bundle, Adult First Aid/CPR/AED, Pediatric First Aid/CPR/AED for childcare, online-only, and group training request options.</p></details>
       <details><summary>How long does a class take?</summary><p>Class length depends on the course and format. We’ll confirm the schedule when we follow up about your request.</p></details>
       <details><summary>Where are classes held?</summary><p>Classes are held in Palmdale, Los Angeles, CA. We’ll confirm availability and class details with you.</p></details>
       <details><summary>Can I arrange training for a group?</summary><p>Yes. Select Group Training and include your group size and preferred date in your request.</p></details>
       <details><summary>Will I receive a certificate?</summary><p>Completion and any certificate depend on the selected course and its requirements. Contact us if you need a specific credential.</p></details>
     </div>
   </section>
-  <section class="hc-enquiry" id="training-enquiry"><h2>Request CPR Training</h2><form method="post" action="{{ route('cpr-training.store') }}">@csrf<label>Name<input name="name" required autocomplete="name"></label><label>Email<input type="email" name="email" required autocomplete="email"></label><label>Phone<input type="tel" name="phone" required autocomplete="tel"></label><label>Course<select name="course" required><option value="">Select a course</option>@foreach(config('training_courses') as $course)<option value="{{ $course['name'] }}" @selected(old('course', request('course')) === $course['name'])>{{ $course['name'] }}</option>@endforeach</select></label><input type="hidden" name="training_type" value="{{ old('training_type', request('course') === 'Group Training' ? 'Group / workplace' : 'Individual') }}"><label class="wide">How would you prefer to pay?<select name="payment_preference" required><option value="Online card payment">Pay online by card</option><option value="Bank transfer">Bank transfer</option></select></label><label class="wide">Questions or preferred date<textarea name="message" rows="3"></textarea></label><input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px"><button type="submit">Send Training Request</button></form></section>
+  <section class="hc-enquiry" id="training-enquiry"><h2>Request CPR Training</h2><form method="post" action="{{ route('cpr-training.store') }}">@csrf<label>Name<input name="name" required autocomplete="name"></label><label>Email<input type="email" name="email" required autocomplete="email"></label><label>Phone<input type="tel" name="phone" required autocomplete="tel"></label><label>Course<select name="course" required><option value="">Select a course</option>@foreach(config('training_courses') as $course)<option value="{{ $course['name'] }}" @class(['first-aid-course-option' => str_contains($course['name'], 'First Aid')]) @selected(old('course', request('course')) === $course['name'])>@if(str_contains($course['name'], 'First Aid'))&#10010; @endif{{ $course['name'] }}</option>@endforeach</select></label><input type="hidden" name="training_type" value="{{ old('training_type', request('course') === 'Group Training' ? 'Group / workplace' : 'Individual') }}"><label class="wide">How would you prefer to pay?<select name="payment_preference" required><option value="Online card payment">Pay online by card</option><option value="Bank transfer">Bank transfer</option></select></label><label class="wide">Questions or preferred date<textarea name="message" rows="3">{{ old('message', request('option') ? 'Request details: ' . request('option') : '') }}</textarea></label><input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px"><button type="submit">Send Training Request</button></form></section>
   <footer class="hc-footer">
     <div class="hc-footer-grid">
       <div class="hc-footer-brand-block"><div class="hc-footer-brand"><img src="{{ asset('images/dmi-logo-transparent.png') }}" alt=""><span>DMI <b>HEALTHS</b></span></div><p class="hc-footer-tagline">Support for intellectual disability. Practical training for life-saving skills.</p></div>
