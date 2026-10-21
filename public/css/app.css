@@ -442,7 +442,7 @@
     .community-showcase{display:inline-flex;}
   }
   @media (min-width:900px){
-    body:has(.hero) #services{padding-top:36px;background:linear-gradient(180deg,#f4fbf9 0%,#fff 220px);}
+    body:has(.hero) #services{padding-top:0;background:linear-gradient(180deg,#f4fbf9 0%,#fff 220px);}
   }
   @media (max-width:699px){
     .hero{max-width:none;margin:0;padding:0;}

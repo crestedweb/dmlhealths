@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ $title ?? 'DMI Healths — Support for Intellectual Disability' }}</title>
-<link rel="stylesheet" href="{{ asset('css/app.css') }}?v=20261021-warm-home-hero-fix1">
+<link rel="stylesheet" href="{{ asset('css/app.css') }}?v=20261021-warm-home-hero-fix2">
 </head>
 <body>
 
@@ -53,11 +53,11 @@
       </div>
       <div class="hero-values" aria-label="Our values">
         <span class="hero-values-rule" aria-hidden="true"></span>
-        <span class="hero-value"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3.5 20c0-3.3 2.2-5.5 5.5-5.5s5.5 2.2 5.5 5.5"></path><path d="M15 5.5a2.5 2.5 0 010 5M17 14.5c2.2.6 3.5 2.4 3.5 5.5"></path></svg>Person-centred care</span>
+        <span class="hero-value"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#087e78" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3.5 20c0-3.3 2.2-5.5 5.5-5.5s5.5 2.2 5.5 5.5"></path><path d="M15 5.5a2.5 2.5 0 010 5M17 14.5c2.2.6 3.5 2.4 3.5 5.5"></path></svg>Person-centred care</span>
         <span class="hero-value-divider" aria-hidden="true"></span>
-        <span class="hero-value"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v5.5c0 4.6-3 7.7-8 9.5-5-1.8-8-4.9-8-9.5V6l8-3z"></path><path d="M8.5 12l2.2 2.2 4.8-5"></path></svg>Dignity</span>
+        <span class="hero-value"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#087e78" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v5.5c0 4.6-3 7.7-8 9.5-5-1.8-8-4.9-8-9.5V6l8-3z"></path><path d="M8.5 12l2.2 2.2 4.8-5"></path></svg>Dignity</span>
         <span class="hero-value-divider" aria-hidden="true"></span>
-        <span class="hero-value"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.8c0 5-8.8 10.2-8.8 10.2S3.2 13.8 3.2 8.8a4.6 4.6 0 018.8-1.7 4.6 4.6 0 018.8 1.7z"></path></svg>Belonging</span>
+        <span class="hero-value"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#087e78" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 8.8c0 5-8.8 10.2-8.8 10.2S3.2 13.8 3.2 8.8a4.6 4.6 0 018.8-1.7 4.6 4.6 0 018.8 1.7z"></path></svg>Belonging</span>
       </div>
     </div>
     <svg class="hero-wave" viewBox="0 0 1600 100" preserveAspectRatio="none" aria-hidden="true"><path fill="#dff3ef" d="M0 46C185 8 322 22 495 57c166 34 278 12 423-7 173-23 310 20 447 12 91-5 165-30 235-53v91H0z"></path></svg>
