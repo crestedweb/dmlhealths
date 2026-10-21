@@ -419,7 +419,7 @@
     .hero-grid{position:relative;display:block;}
     .hero-media{height:clamp(560px,76vh,700px);border-radius:0;}
     .hero-media .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}
-    .hero-media::after{background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.98) 16%,rgba(255,255,255,.88) 25%,rgba(255,255,255,.62) 33%,rgba(255,255,255,.28) 40%,rgba(255,255,255,.08) 46%,rgba(255,255,255,0) 51%),linear-gradient(0deg,rgba(255,255,255,.06),transparent 48%);}
+    .hero-media::after{background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.99) 18%,rgba(255,255,255,.8) 25%,rgba(255,255,255,.48) 31%,rgba(255,255,255,.2) 37%,rgba(255,255,255,.04) 43%,rgba(255,255,255,0) 48%);}
     .hero-text{position:absolute;z-index:4;top:42%;bottom:auto;left:max(5.4vw,calc((100% - 1500px)/2));right:auto;transform:translateY(-50%);width:min(740px,48vw);color:#123f45;}
     .hero-kicker{display:flex;align-items:center;gap:10px;margin:0 0 16px;color:#087e78;font-size:13px;font-weight:800;letter-spacing:.17em;text-transform:uppercase;}
     .hero-kicker span{color:#17a99d;font-size:18px;}
