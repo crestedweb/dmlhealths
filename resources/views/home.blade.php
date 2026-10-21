@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ $title ?? 'DMI Healths — Support for Intellectual Disability' }}</title>
-<link rel="stylesheet" href="{{ asset('css/app.css') }}?v=20261021-warm-home-hero-fix3">
+<link rel="stylesheet" href="{{ asset('css/app.css') }}?v=20261021-warm-home-hero-fix4">
 </head>
 <body>
 
@@ -45,7 +45,7 @@
     <div class="hero-text">
       <p class="hero-kicker">Person-centred support <span aria-hidden="true">•</span> DMI Healths</p>
       <h1><span>Care That Sees</span><span>the Person,</span><span>Not Just the Need.</span></h1>
-      <p class="desc">Personalized residential care and support for adults with intellectual and developmental disabilities—helping people live safe, healthy, and fulfilling lives.</p>
+      <p class="desc">Personalised residential care and support for adults with intellectual and developmental disabilities—helping people live safe, healthy and fulfilling lives.</p>
       <div class="hero-btns">
         <a href="#services" class="hero-btn">Explore Our Services →</a>
         <a href="#life" class="hero-btn ghost community-showcase">Meet Our Community</a>
