@@ -450,7 +450,7 @@
     .hero-grid{position:relative;display:block;}
     .hero-media{height:min(82svh,660px);min-height:540px;border-radius:0;}
     .hero-media .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:54% center;}
-    .hero-media::after{background:linear-gradient(90deg,rgba(255,255,255,.97) 0%,rgba(255,255,255,.91) 57%,rgba(255,255,255,.62) 100%),linear-gradient(0deg,rgba(223,243,239,.72),rgba(255,255,255,.04) 72%);}
+    .hero-media::after{background:linear-gradient(90deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.9) 24%,rgba(255,255,255,.66) 44%,rgba(255,255,255,.3) 61%,rgba(255,255,255,.08) 78%,rgba(255,255,255,0) 88%),linear-gradient(0deg,rgba(223,243,239,.22),rgba(255,255,255,0) 72%);}
     .hero-text{position:absolute;z-index:4;top:50%;bottom:auto;left:20px;right:20px;transform:translateY(-50%);width:auto;color:#123f45;}
     .hero-kicker{gap:7px;margin:0 0 14px;color:#087e78;font-size:10px;letter-spacing:.13em;}
     .hero-kicker span{font-size:14px;}

@@ -197,6 +197,7 @@
         list.className = 'hc-course-picker-list';
         list.id = `hc-course-options-${index}`;
         list.setAttribute('role', 'listbox');
+        list.hidden = true;
         trigger.setAttribute('aria-controls', list.id);
         select.classList.add('hc-course-picker-native');
         select.after(picker);
