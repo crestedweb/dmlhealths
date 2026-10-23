@@ -12,6 +12,8 @@
   .hc-actions{display:flex;gap:9px}.hc-actions a{background:#05265f;color:#fff;text-decoration:none;border-radius:3px;padding:9px 24px;font-size:13px;font-weight:bold}.hc-actions a:last-child{background:#0052a4}
   .hc-nav{height:32px;border-bottom:1px solid #0b4f91;display:flex;align-items:center;justify-content:center;gap:38px;background:#fff}.hc-nav a{font-size:13px;font-weight:bold;color:#222;text-decoration:none}.hc-nav .hc-consultation-link{padding:6px 11px;border:1px solid #08746f;border-radius:999px;background:#08746f;color:#fff;font-weight:800;transition:background .15s,color .15s,box-shadow .15s}.hc-nav .hc-consultation-link:hover{background:#075e5a;border-color:#075e5a;color:#fff;box-shadow:0 3px 10px rgba(8,116,111,.18)}
   .heart-cpr-page select option.first-aid-course-option{color:#c62828;font-weight:700}
+  .hc-course-picker{position:relative;width:100%;margin-top:4px}.hc-course-picker-trigger{width:100%;min-height:39px;padding:7px 10px;display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #cbd8e7;border-radius:5px;background:#fff;color:#31516f;text-align:left;font:inherit;cursor:pointer}.hc-course-picker-trigger:focus-visible,.hc-course-picker-option:focus-visible{outline:3px solid rgba(0,82,164,.28);outline-offset:2px}.hc-course-picker-caret{flex:none;width:9px;height:9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px)}.hc-course-picker-list{position:absolute;z-index:30;top:calc(100% + 2px);left:0;right:0;max-height:260px;overflow:auto;border:1px solid #777;background:#fff;box-shadow:0 5px 16px rgba(0,0,0,.16)}.hc-course-picker-list[hidden]{display:none}.hc-course-picker-option{display:block;width:100%;padding:7px 10px;border:0;background:#fff;color:#31516f;text-align:left;font:inherit;cursor:pointer}.hc-course-picker-option:hover,.hc-course-picker-option[aria-selected="true"]{background:#e8f1fb}.hc-course-picker-option.is-first-aid{color:#c62828;font-weight:700}.hc-course-picker-option.is-first-aid::before{content:"✚";display:inline-block;margin-right:7px;color:#c62828;font-size:1.05em}.hc-course-picker-native{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+  .hc-finder .hc-course-picker-trigger{height:auto;min-height:48px;margin-top:7px;padding:0 12px;border:1px solid #d9e1ec;border-radius:8px;background:#fff;color:#47627f;font-size:14px;font-weight:400}.hc-finder .hc-course-picker-option{height:auto;margin:0;padding:7px 10px;border:0;border-radius:0;background:#fff;color:#31516f;font-size:14px;font-weight:400}.hc-finder .hc-course-picker-option.is-first-aid{color:#c62828;font-weight:700}.hc-enquiry .hc-course-picker-trigger{grid-column:auto;min-height:42px;margin:0;padding:7px 10px;border:1px solid #ccc;border-radius:5px;background:#fff;color:#31516f;text-align:left}.hc-enquiry .hc-course-picker-option{height:auto;margin:0;padding:7px 10px;border:0;border-radius:0;background:#fff;color:#31516f;text-align:left;font-weight:400}.hc-enquiry .hc-course-picker-option.is-first-aid{color:#c62828;font-weight:700}
   .hc-hero{height:290px;position:relative;background:linear-gradient(0deg,rgba(0,0,0,.05),rgba(0,0,0,.15)),url('{{ asset('images/hero5.jpg') }}') center 42%/cover;display:flex;justify-content:center;align-items:flex-start;color:white;text-align:center}
   .hc-hero h1{font-size:clamp(30px,3vw,44px);line-height:1.08;margin:15px 12px 0;text-shadow:0 1px 4px #555}.hc-hero h1 small{display:block;font-size:.58em;margin-top:2px}
   .hc-finder{position:absolute;right:21%;top:82px;width:215px;padding:13px 12px 12px;background:rgba(255,255,255,.96);border-radius:8px;color:#222;text-align:left;box-shadow:0 2px 12px #5556}
@@ -171,6 +173,89 @@
         mobileNav.classList.remove('is-open');
         menuToggle?.setAttribute('aria-expanded', 'false');
       }));
+      const closePicker = (picker) => {
+        const trigger = picker.querySelector('.hc-course-picker-trigger');
+        const list = picker.querySelector('.hc-course-picker-list');
+        trigger.setAttribute('aria-expanded', 'false');
+        list.hidden = true;
+      };
+      document.querySelectorAll('.heart-cpr-page select[name="course"]').forEach((select, index) => {
+        const picker = document.createElement('div');
+        picker.className = 'hc-course-picker';
+        const trigger = document.createElement('button');
+        trigger.type = 'button';
+        trigger.className = 'hc-course-picker-trigger';
+        trigger.setAttribute('role', 'combobox');
+        trigger.setAttribute('aria-haspopup', 'listbox');
+        trigger.setAttribute('aria-expanded', 'false');
+        const value = document.createElement('span');
+        const caret = document.createElement('span');
+        caret.className = 'hc-course-picker-caret';
+        caret.setAttribute('aria-hidden', 'true');
+        trigger.append(value, caret);
+        const list = document.createElement('div');
+        list.className = 'hc-course-picker-list';
+        list.id = `hc-course-options-${index}`;
+        list.setAttribute('role', 'listbox');
+        trigger.setAttribute('aria-controls', list.id);
+        select.classList.add('hc-course-picker-native');
+        select.after(picker);
+        picker.append(trigger, list);
+
+        const sync = () => {
+          const selected = select.options[select.selectedIndex];
+          value.textContent = selected?.textContent.trim().replace(/^[✚+\s]+/, '') || 'Select a course';
+          list.querySelectorAll('[role="option"]').forEach((item, optionIndex) => {
+            item.setAttribute('aria-selected', String(select.options[optionIndex]?.value === select.value));
+          });
+        };
+        Array.from(select.options).forEach((option) => {
+          const item = document.createElement('button');
+          item.type = 'button';
+          item.className = `hc-course-picker-option${option.classList.contains('first-aid-course-option') ? ' is-first-aid' : ''}`;
+          item.setAttribute('role', 'option');
+          item.textContent = option.textContent.trim().replace(/^[✚+\s]+/, '');
+          item.setAttribute('aria-selected', String(option.value === select.value));
+          item.disabled = option.disabled;
+          item.addEventListener('click', () => {
+            select.value = option.value;
+            select.dispatchEvent(new Event('change', { bubbles: true }));
+            sync();
+            closePicker(picker);
+            trigger.focus();
+          });
+          list.append(item);
+        });
+        trigger.addEventListener('click', () => {
+          const opening = list.hidden;
+          document.querySelectorAll('.hc-course-picker').forEach(closePicker);
+          if (opening) {
+            list.hidden = false;
+            trigger.setAttribute('aria-expanded', 'true');
+          }
+        });
+        trigger.addEventListener('keydown', (event) => {
+          if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            list.hidden = false;
+            trigger.setAttribute('aria-expanded', 'true');
+            list.querySelector('[role="option"]:not(:disabled)')?.focus();
+          }
+        });
+        list.addEventListener('keydown', (event) => {
+          const options = Array.from(list.querySelectorAll('[role="option"]:not(:disabled)'));
+          const current = options.indexOf(document.activeElement);
+          if (event.key === 'Escape') { event.preventDefault(); closePicker(picker); trigger.focus(); }
+          if (event.key === 'ArrowDown') { event.preventDefault(); options[Math.min(current + 1, options.length - 1)]?.focus(); }
+          if (event.key === 'ArrowUp') { event.preventDefault(); options[Math.max(current - 1, 0)]?.focus(); }
+        });
+        select.addEventListener('change', sync);
+        select.addEventListener('invalid', () => trigger.focus());
+        sync();
+      });
+      document.addEventListener('click', (event) => {
+        if (!event.target.closest('.hc-course-picker')) document.querySelectorAll('.hc-course-picker').forEach(closePicker);
+      });
       const modal = document.getElementById('hc-class-modal');
       const modalForm = document.getElementById('hc-class-modal-form');
       const status = modal.querySelector('.hc-class-modal-status');
