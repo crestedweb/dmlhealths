@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ $title ?? 'DMI Healths — Support for Intellectual Disability' }}</title>
-<link rel="stylesheet" href="{{ asset('css/app.css') }}?v=20261101-home-hero-left-fade">
+<link rel="stylesheet" href="{{ asset('css/app.css') }}?v=20261101-home-hero-curved-fade2">
 </head>
 <body>
 
@@ -41,6 +41,19 @@
   <div class="hero-grid">
     <div class="hero-media">
       <img class="photo hero-photo" src="{{ config('site.images.hero') }}" alt="A care professional supporting an adult wheelchair user in a welcoming care setting">
+      <svg class="hero-fade" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="hero-fade-gradient" x1="0" y1="0" x2="1000" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="white" stop-opacity="0"/>
+            <stop offset="7%" stop-color="white" stop-opacity=".55"/>
+            <stop offset="15%" stop-color="white" stop-opacity=".94"/>
+            <stop offset="25%" stop-color="white" stop-opacity=".88"/>
+            <stop offset="43%" stop-color="white" stop-opacity=".35"/>
+            <stop offset="60%" stop-color="white" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path d="M0 0 C24 260 48 405 62 500 C48 650 24 820 0 1000 L1000 1000 L1000 0 Z" fill="url(#hero-fade-gradient)"/>
+      </svg>
     </div>
     <div class="hero-text">
       <p class="hero-kicker">Person-centred support <span aria-hidden="true">•</span> DMI Healths</p>
