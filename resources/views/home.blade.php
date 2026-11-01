@@ -4,6 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ $title ?? 'DMI Healths — Support for Intellectual Disability' }}</title>
 <link rel="stylesheet" href="{{ asset('css/app.css') }}?v=20261101-home-hero-curved-fade3">
+<link rel="stylesheet" href="{{ asset('css/home-hero-fade.css') }}?v=20261101-1">
 </head>
 <body>
 
