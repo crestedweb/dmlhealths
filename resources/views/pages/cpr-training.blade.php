@@ -23,6 +23,7 @@
   .hc-redcross{height:116px;display:flex;justify-content:center;align-items:center;gap:16px;color:#777}.hc-cross{width:48px;height:48px;border-radius:50%;background:#f7f7f7;box-shadow:0 2px 6px #999;position:relative}.hc-cross:before,.hc-cross:after{content:'';position:absolute;background:#e30017;left:20px;top:6px;width:9px;height:36px}.hc-cross:after{transform:rotate(90deg)}.hc-redcross strong{font-size:21px}.hc-redcross small{display:block;text-align:right;font-size:10px;color:#777}
   .hc-bottom{height:10px;background:#14324a}
   .hc-enquiry{padding:45px 7%;background:#f6f6f6}.hc-enquiry h2{text-align:center;color:#173347}.hc-enquiry form{max-width:700px;margin:20px auto;display:grid;grid-template-columns:1fr 1fr;gap:12px}.hc-enquiry label{display:grid;gap:5px;font-size:13px}.hc-enquiry input,.hc-enquiry select,.hc-enquiry textarea{padding:10px;border:1px solid #ccc;border-radius:4px}.hc-enquiry .wide{grid-column:1/-1}.hc-enquiry button{grid-column:1/-1;background:#0052a4;color:#fff;border:0;padding:12px;border-radius:4px;font-weight:bold}
+  .hc-enquiry .hc-path-choice{display:grid;grid-template-columns:1fr 1fr;gap:12px}.hc-enquiry .hc-path-card{display:flex;gap:10px;align-items:flex-start;padding:15px;border:1px solid #cbd8e7;border-radius:8px;background:#fff;cursor:pointer}.hc-enquiry .hc-path-card:has(input:checked){border-color:#0052a4;box-shadow:0 0 0 2px rgba(0,82,164,.12)}.hc-enquiry .hc-path-card input{width:auto;margin:3px 0 0;padding:0;border:0;accent-color:#0052a4}.hc-enquiry .hc-path-card span{display:grid;gap:4px}.hc-enquiry .hc-path-card small,.hc-enquiry .hc-payment-note{color:#536779;font-weight:400;line-height:1.45}.hc-enquiry [hidden]{display:none!important}.hc-enquiry .hc-error{grid-column:1/-1;color:#a32121;font-size:13px}.hc-enquiry button:disabled{opacity:.6;cursor:not-allowed}
   @media(max-width:700px){.hc-top{height:48px;padding:0 12px}.hc-actions a{padding:7px 9px;font-size:8px}.hc-nav{gap:0;justify-content:space-around;height:30px}.hc-nav a{font-size:10px}.hc-hero{height:300px;background-position:center}.hc-hero h1{font-size:26px}.hc-finder{right:50%;transform:translateX(50%);top:105px;width:min(280px,88%)}.hc-cert{height:112px;gap:25px}.hc-cert-logo{font-size:14px}.hc-cert-logo svg{width:61px;height:61px}.hc-cert-logo img{width:65px;height:65px}.hc-seal{width:65px;height:65px}.hc-redcross-logo{width:48px;height:48px}.hc-courses{grid-template-columns:1fr;gap:14px;padding:16px 10px 25px}.hc-card img{height:190px}.hc-card h2{font-size:17px}.hc-card p{font-size:13px;min-height:0}.hc-card a{font-size:11px}.hc-redcross{height:95px}.hc-redcross strong{font-size:17px}.hc-cross{width:40px;height:40px}.hc-cross:before,.hc-cross:after{left:16px;top:5px;height:30px}.hc-enquiry form{grid-template-columns:1fr}.hc-enquiry .wide{grid-column:auto}}
 .heart-cpr-page section{padding:0}.heart-cpr-page .hc-courses{padding:19px 9px 28px}.heart-cpr-page .hc-enquiry{padding:45px 7%}@media(max-width:700px){.heart-cpr-page .hc-courses{padding:16px 10px 25px}.heart-cpr-page .hc-enquiry{padding:40px 7%}}
   .hc-hero{min-height:400px;height:auto;position:relative;isolation:isolate;display:flex;align-items:center;justify-content:stretch;text-align:left;background:url('{{ asset('images/hero5.jpg') }}') center 42%/cover;color:#fff}
@@ -150,7 +151,72 @@
       <details><summary>Will I receive a certificate?</summary><p>Completion and any certificate depend on the selected course and its requirements. Contact us if you need a specific credential.</p></details>
     </div>
   </section>
-  <section class="hc-enquiry" id="training-enquiry"><h2>Request CPR Training</h2><form method="post" action="{{ route('cpr-training.store') }}">@csrf<label>Name<input name="name" required autocomplete="name"></label><label>Email<input type="email" name="email" required autocomplete="email"></label><label>Phone<input type="tel" name="phone" required autocomplete="tel"></label><label>Course<select name="course" required><option value="">Select a course</option>@foreach(config('training_courses') as $course)<option value="{{ $course['name'] }}" @class(['first-aid-course-option' => str_contains($course['name'], 'First Aid')]) @selected(old('course', request('course')) === $course['name'])>@if(str_contains($course['name'], 'First Aid'))&#10010; @endif{{ $course['name'] }}</option>@endforeach</select></label><input type="hidden" name="training_type" value="{{ old('training_type', request('course') === 'Group Training' ? 'Group / workplace' : 'Individual') }}"><label class="wide">How would you prefer to pay?<select name="payment_preference" required><option value="Online card payment">Pay online by card</option><option value="Bank transfer">Bank transfer</option></select></label><label class="wide">Questions or preferred date<textarea name="message" rows="3">{{ old('message', request('option') ? 'Request details: ' . request('option') : '') }}</textarea></label><input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px"><button type="submit">Send Training Request</button></form></section>
+  <section class="hc-enquiry" id="training-enquiry">
+    <h2>How would you like to continue?</h2>
+    <p style="max-width:700px;margin:0 auto;text-align:center;color:#536779">Choose a course request or pay now for the online course. In-person, hybrid, and group training requests are confirmed by our team before payment.</p>
+    @if(request('payment') === 'cancelled')<p class="hc-error" style="max-width:700px;margin:12px auto">Checkout was cancelled. No payment was taken. You can try again or send a training request.</p>@endif
+    @if($errors->has('payment'))<p class="hc-error" style="max-width:700px;margin:12px auto">{{ $errors->first('payment') }}</p>@endif
+    <form id="training-enquiry-form" method="post" action="{{ route('cpr-training.store') }}" data-checkout-url="{{ route('cpr-training.checkout') }}" data-catalog='@json(collect(config("training_courses"))->map(fn ($course) => ["name" => $course["name"], "options" => $course["pricing_options"] ?? []])->values())' data-prefill-option="{{ old('training_option', request('option')) }}">
+      @csrf
+      <div class="hc-path-choice wide" role="radiogroup" aria-label="Choose how to continue">
+        <label class="hc-path-card"><input type="radio" name="flow" value="request" @checked(old('flow', 'request') === 'request')><span><strong>Request training</strong><small>Ask about dates, in-person or hybrid classes, group training, or course details.</small></span></label>
+        <label class="hc-path-card"><input id="training-pay-choice" type="radio" name="flow" value="payment" @checked(old('flow') === 'payment') disabled><span><strong>Pay for an online course</strong><small>Continue to secure Stripe Checkout for an available online course.</small></span></label>
+      </div>
+      <label>Name<input name="name" value="{{ old('name') }}" required autocomplete="name"></label>
+      <label>Email<input type="email" name="email" value="{{ old('email') }}" required autocomplete="email"></label>
+      <label>Phone<input type="tel" name="phone" value="{{ old('phone') }}" required autocomplete="tel"></label>
+      <label>Course<select name="course" id="training-course" required><option value="">Select a course</option>@foreach(config('training_courses') as $course)<option value="{{ $course['name'] }}" @class(['first-aid-course-option' => str_contains($course['name'], 'First Aid')]) @selected(old('course', request('course')) === $course['name'])>@if(str_contains($course['name'], 'First Aid'))&#10010; @endif{{ $course['name'] }}</option>@endforeach</select></label>
+      <label class="wide">Course option<select id="training-option" name="training_option"><option value="">Select an option (optional for a request)</option></select></label>
+      <input type="hidden" name="training_type" value="{{ old('training_type', request('course') === 'Group Training' ? 'Group / workplace' : 'Individual') }}">
+      <p id="training-payment-note" class="hc-payment-note wide" aria-live="polite">Select the online course option to enable payment. Other formats can be requested for confirmation.</p>
+      <label class="wide">Questions or preferred date<textarea name="message" rows="3">{{ old('message', request('option') ? 'Request details: ' . request('option') : '') }}</textarea></label>
+      <span class="hc-error wide" id="training-option-error">{{ $errors->first('training_option') }}</span>
+      <input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px">
+      <button id="training-submit" type="submit">Send Training Request</button>
+    </form>
+  </section>
+  <script>
+    (() => {
+      const form = document.getElementById('training-enquiry-form');
+      if (!form) return;
+      const catalog = JSON.parse(form.dataset.catalog);
+      const courseSelect = form.elements.course;
+      const optionSelect = form.elements.training_option;
+      const paymentChoice = document.getElementById('training-pay-choice');
+      const paymentNote = document.getElementById('training-payment-note');
+      const submit = document.getElementById('training-submit');
+      const prefillOption = form.dataset.prefillOption || '';
+
+      const refreshOptions = () => {
+        const course = catalog.find((item) => item.name === courseSelect.value);
+        const options = course?.options || [];
+        optionSelect.replaceChildren(new Option(options.length ? 'Select a course option' : 'No fixed-price options; send a request', ''));
+        options.forEach((item) => optionSelect.add(new Option(`${item.name} — $${Number(item.price).toFixed(2)} USD (${item.format})`, item.name)));
+        const prefetched = options.find((item) => prefillOption.includes(item.name));
+        if (prefetched) optionSelect.value = prefetched.name;
+        updateFlow();
+      };
+
+      const updateFlow = () => {
+        const selected = (catalog.find((item) => item.name === courseSelect.value)?.options || []).find((item) => item.name === optionSelect.value);
+        const canPay = selected?.format === 'Online course';
+        paymentChoice.disabled = !canPay;
+        if (!canPay && paymentChoice.checked) form.elements.flow.value = 'request';
+        const paying = form.elements.flow.value === 'payment';
+        optionSelect.required = paying;
+        form.action = paying ? form.dataset.checkoutUrl : '{{ route('cpr-training.store') }}';
+        submit.textContent = paying ? `Continue to secure checkout — $${Number(selected?.price || 0).toFixed(2)}` : 'Send Training Request';
+        paymentNote.textContent = canPay
+          ? `Online checkout is available for this option at $${Number(selected.price).toFixed(2)} USD. Your payment is confirmed before we mark the order as paid.`
+          : 'Select the online course option to enable payment. Other formats can be requested for confirmation.';
+      };
+
+      courseSelect.addEventListener('change', refreshOptions);
+      optionSelect.addEventListener('change', updateFlow);
+      form.querySelectorAll('input[name="flow"]').forEach((input) => input.addEventListener('change', updateFlow));
+      refreshOptions();
+    })();
+  </script>
   <footer class="hc-footer">
     <div class="hc-footer-grid">
       <div class="hc-footer-brand-block"><div class="hc-footer-brand"><img src="{{ asset('images/dmi-logo-transparent.png') }}" alt=""><span>DMI <b>HEALTHS</b></span></div><p class="hc-footer-tagline">Support for intellectual disability. Practical training for life-saving skills.</p></div>

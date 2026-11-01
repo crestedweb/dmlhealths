@@ -66,7 +66,7 @@ class ContactController extends Controller
             'phone' => ['required', 'string', 'max:40'],
             'course' => ['required', Rule::in(array_column(config('training_courses'), 'name'))],
             'training_type' => ['required', 'in:Individual,Group / workplace'],
-            'payment_preference' => ['required', 'in:Online card payment,Bank transfer'],
+            'training_option' => ['nullable', 'string', 'max:190'],
             'message' => ['nullable', 'string', 'max:2500'],
             'website' => ['nullable', 'max:0'],
         ]);
@@ -78,7 +78,7 @@ class ContactController extends Controller
             'phone' => $data['phone'],
             'subject' => 'CPR training enquiry: ' . $data['course'],
             'reason' => 'Services',
-            'message' => "Course: {$data['course']}\nTraining type: {$data['training_type']}\nPayment preference: {$data['payment_preference']}\n\n" . ($data['message'] ?: 'No additional details provided.'),
+            'message' => "Course: {$data['course']}\nTraining type: {$data['training_type']}\nRequested option: " . ($data['training_option'] ?: 'Not specified') . "\nPayment status: Not paid — training request only\n\n" . ($data['message'] ?: 'No additional details provided.'),
         ];
 
         DB::table('contact_messages')->insert($contact + ['created_at' => now(), 'updated_at' => now()]);

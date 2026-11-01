@@ -121,11 +121,11 @@
               <h3>{{ $option['name'] }}</h3>
               <p class="training-price-description">{{ $option['description'] }}</p>
               <p class="training-price-amount"><strong>${{ number_format($option['price'], 0) }}</strong><span>USD</span></p>
-              <a class="training-price-request" href="{{ route('cpr-training', ['course' => $course['name'], 'option' => $option['name'] . ' - $' . $option['price']]) }}#training-enquiry">Request this option <span aria-hidden="true">→</span></a>
+              <a class="training-price-request" href="{{ route('cpr-training', ['course' => $course['name'], 'option' => $option['name'] . ' - $' . $option['price']]) }}#training-enquiry">{{ $option['format'] === 'Online course' ? 'Choose online checkout' : 'Request this option' }} <span aria-hidden="true">→</span></a>
             </article>
           @endforeach
         </div>
-        <p class="training-price-footnote">Requesting an option does not reserve a class or collect payment. Our team will confirm details and next steps with you.</p>
+        <p class="training-price-footnote">The online course option can be purchased securely online. In-person and hybrid requests are not charged until the team confirms the schedule and next steps.</p>
         @else
           <div class="training-pricing-grid">
             <article class="training-price-card">

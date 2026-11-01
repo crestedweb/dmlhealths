@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PublicPageController;
+use App\Http\Controllers\TrainingPaymentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -38,6 +39,9 @@ Route::get('/cpr-training/courses/{slug}', function (string $slug) {
     ]);
 })->name('cpr-training.course');
 Route::post('/cpr-training', [ContactController::class, 'storeTraining'])->middleware('throttle:5,1')->name('cpr-training.store');
+Route::post('/cpr-training/checkout', [TrainingPaymentController::class, 'checkout'])->middleware('throttle:5,1')->name('cpr-training.checkout');
+Route::get('/cpr-training/payment-success', [TrainingPaymentController::class, 'success'])->name('cpr-training.payment-success');
+Route::post('/stripe/webhook', [TrainingPaymentController::class, 'webhook'])->name('stripe.webhook');
 Route::post('/cpr-training/consultation', [ContactController::class, 'storeConsultation'])->middleware('throttle:5,1')->name('cpr-training.consultation.store');
 Route::get('/eligibility/{condition}', [PublicPageController::class, 'eligibility'])->name('eligibility');
 Route::get('/contact', [ContactController::class, 'create'])->name('contact');
